@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(project_params.merge({user_id: current_user.id}))
 
     respond_to do |format|
       if @project.save
@@ -61,6 +61,10 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def test
+
   end
 
   private

@@ -39,3 +39,10 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+
+group :development do
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'awesome_print'
+end

@@ -1,14 +1,64 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
+<% content_for :title do %>
   <%= @project.name %>
-</p>
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user_id %>
-</p>
+<div class="row mt">
+  <div class="col-lg-12">
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    <% @project.stacks.in_groups_of(3).each do |stacks| %>
+
+      <div class="row">
+
+        <% stacks.compact.each do |stack| %>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 mb">
+            <div class="white-panel pn">
+              <div class="white-header">
+                <h5><%= stack.name %></h5>
+              </div>
+              <div class='white-summary'>
+                <b>
+                  <%= stack.summary.truncate(30) %>
+                </b>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="small mt">TASKS</p>
+                  <p>6/17</p>
+                </div>
+                <div class="col-md-6">
+                  <p class="small mt">NOTES</p>
+                  <p>12</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1 white-progress">
+                  <div class="progress">
+                    <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                      <span class="sr-only">45% Complete</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p>
+                <%= link_to 'Open',  [@project, stack], class: 'btn btn-theme03' %>
+                &nbsp;
+                <%= link_to 'Settings',  [@project, stack] %>
+              </p>
+            </div>
+          </div><!-- /col-md-4 -->
+
+        <% end %>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <div class='col-lg-12'>
+    <%= link_to new_project_stack_path(@project), class: 'btn btn-lg btn-theme03' do %>
+      Create stack
+    <% end %>
+  </div>
+</div>

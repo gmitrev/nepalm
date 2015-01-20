@@ -13,4 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require bootstrap/jquery
+//= require bootstrap/jquery-1.8.3.min
+//= require bootstrap/bootstrap.min
+//= require bootstrap/jquery.dcjqaccordion.2.7
+//= require bootstrap/jquery.scrollTo.min
+//= require bootstrap/jquery.nicescroll.js
+//= require bootstrap/jquery.sparkline.js
+//= require bootstrap/common-scripts.js
+//= require bootstrap/gritter/js/jquery.gritter.js
+//= require bootstrap/gritter-conf.js
+//= require bootstrap/sparkline-chart
+//= require bootstrap/zabuto_calendar
