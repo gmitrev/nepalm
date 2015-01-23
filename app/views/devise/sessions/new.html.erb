@@ -17,9 +17,18 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-login' }) do |f| %>
   <h2 class="form-login-heading">sign in now</h2>
   <div class="login-wrap">
-    <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: "Email" %>
+    <%= f.email_field :email,
+      autofocus: true,
+      class: 'form-control',
+      placeholder: "Email",
+      required: 'required '%>
     <br>
-    <%= f.password_field :password, class: 'form-control', placeholder: 'Password',  autocomplete: "off" %>
+    <%= f.password_field :password,
+      class: 'form-control',
+      placeholder: 'Password',
+      autocomplete: "off",
+      required: 'required' %>
+
     <label class="checkbox">
       <span class="pull-right">
         <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
@@ -36,15 +45,16 @@
     </div>
     <div class="registration">
       Don't have an account yet?<br/>
-      <a class="" href="#">
-        Create an account
-      </a>
+      <%= link_to "Create an account", new_registration_path(resource_name) %><br />
     </div>
 
   </div>
 
+<% end %>
+
   <!-- Modal -->
-  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal ">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -53,12 +63,20 @@
         </div>
         <div class="modal-body">
           <p>Enter your e-mail address below to reset your password.</p>
-          <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+          <!-- <input type="text" name="email" placeholder="Email" autocomplete="off" class="form&#45;control placeholder&#45;no&#45;fix"> -->
+          <%= f.email_field :email,
+            autofocus: true,
+            placeholder: "Email",
+            autocomplete: "off",
+            class: 'form-control placeholder-no-fix',
+            required: 'required'
+
+            %>
 
         </div>
         <div class="modal-footer">
           <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-          <button class="btn btn-theme" type="button">Submit</button>
+          <button class="btn btn-theme" type="submit">Send reset password instructions</button>
         </div>
       </div>
     </div>

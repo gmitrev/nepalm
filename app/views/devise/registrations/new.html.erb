@@ -1,6 +1,4 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<% form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :email %><br />
@@ -15,4 +13,45 @@
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-login' }) do |f| %>
+  <h2 class="form-login-heading">Create an account</h2>
+  <%= devise_error_messages! %>
+  <div class="login-wrap">
+
+    <%= f.email_field :email,
+      autofocus: true,
+      class: 'form-control',
+      placeholder: "Email",
+      required: 'required' %>
+    <br>
+
+    <%= f.password_field :password,
+      class: 'form-control',
+      placeholder: 'Password',
+      autocomplete: "off",
+      required: 'required' %>
+    <br>
+
+    <%= f.password_field :password_confirmation,
+      class: 'form-control',
+      placeholder: 'Confirm Password',
+      autocomplete: "off",
+      required: 'required' %>
+    <br>
+
+    <button class="btn btn-theme btn-block" type="submit">
+      <i class="fa fa-lock"></i> Register
+    </button>
+
+    <hr>
+
+    <div class="registration">
+      Already have an account?<br/>
+      <%= link_to "Sign in", new_session_path(resource_name) %><br />
+    </div>
+
+  </div>
+
+<% end %>
