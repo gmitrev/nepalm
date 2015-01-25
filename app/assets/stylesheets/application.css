@@ -15,6 +15,7 @@
  *= require 'bootstrap/style-responsive'
  *= require 'bootstrap/font-awesome/css/font-awesome'
  *= require 'bootstrap/lineicons/style'
+ *= require 'bootstrap/to-do'
 
  *= require_self
  */

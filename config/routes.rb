@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     collection do
       get :test
     end
-    resources :stacks
+    resources :stacks do
+      resources :task_lists do
+        resources :tasks
+      end
+    end
   end
 
   devise_for :users

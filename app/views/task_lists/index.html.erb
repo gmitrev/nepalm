@@ -1,0 +1,27 @@
+<h1>Listing task_lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Stack</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_lists.each do |task_list| %>
+      <tr>
+        <td><%= task_list.name %></td>
+        <td><%= task_list.stack_id %></td>
+        <td><%= link_to 'Show', task_list %></td>
+        <td><%= link_to 'Edit', edit_task_list_path(task_list) %></td>
+        <td><%= link_to 'Destroy', task_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task list', new_task_list_path %>

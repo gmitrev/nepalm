@@ -25,3 +25,4 @@
 //= require bootstrap/gritter-conf.js
 //= require bootstrap/sparkline-chart
 //= require bootstrap/zabuto_calendar
+//= require stacks
