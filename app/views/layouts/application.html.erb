@@ -12,6 +12,7 @@
     <title>Project manager</title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -468,10 +469,9 @@
       <!--footer end-->
   </section>
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <!-- js placed at the end of the document so the pages load faster -->
 
-	<script type="application/javascript">
+    <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
@@ -479,24 +479,7 @@
                 $(this).hide();
             });
 
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
         });
-
 
         function myNavFunction(id) {
             $("#date-popover").hide();
@@ -505,7 +488,6 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
-
 
   </body>
 </html>

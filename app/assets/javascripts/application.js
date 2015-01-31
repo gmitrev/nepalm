@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap/jquery
-//= require bootstrap/jquery-1.8.3.min
+//= require stacks
 //= require bootstrap/bootstrap.min
 //= require bootstrap/jquery.dcjqaccordion.2.7
 //= require bootstrap/jquery.scrollTo.min
@@ -25,4 +24,3 @@
 //= require bootstrap/gritter-conf.js
 //= require bootstrap/sparkline-chart
 //= require bootstrap/zabuto_calendar
-//= require stacks

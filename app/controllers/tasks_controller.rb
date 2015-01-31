@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :toggle]
 
   # GET /tasks
   # GET /tasks.json
@@ -24,12 +24,12 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = Task.new(task_params.merge({task_list_id: params[:task_list_id]}))
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        format.html { render @task, notice: 'Task was successfully created.' }
+        format.json { render 'show', status: :created}
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -56,8 +56,17 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { head :no_content }
       format.json { head :no_content }
+    end
+  end
+
+  def toggle
+    @task.toggle!
+
+    respond_to do |format|
+      format.html { render @task, notice: 'Task was successfully toggled.' }
+      format.json { render :show, status: :ok }
     end
   end
 

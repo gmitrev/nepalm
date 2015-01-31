@@ -1,0 +1,27 @@
+<li class='task <%= task.completed? ? "task-done" : "" %>' data-task-id='<%= task.id %>'>
+
+  <div class="task-checkbox">
+    <%= link_to toggle_task_path(task),
+      remote: true,
+      method: :put,
+      class: 'complete-task' do %>
+      <i class="fa <%= task.completed? ? "fa-check-square" : "fa-square-o" %>"> </i>
+    <% end %>
+  </div>
+
+  <div class="task-title">
+    <span class="task-title-sp"><%= task.name %></span>
+    <!-- <span class="badge bg&#45;warning">Important</span> -->
+    <div class="pull-right hidden-phone">
+      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+    <%= link_to task,
+      remote: true,
+      method: :delete,
+      class: 'delete-task btn btn-danger btn-xs' do %>
+      <i class="fa fa-trash-o "></i>
+    <% end %>
+    </div>
+
+  </div>
+
+</li>

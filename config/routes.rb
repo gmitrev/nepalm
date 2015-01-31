@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tasks do
+    member do
+      put :toggle
+    end
+  end
+
   devise_for :users
   root 'projects#index'
 end
