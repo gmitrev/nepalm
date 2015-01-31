@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require best_in_place
 //= require jquery_ujs
 //= require turbolinks
 //= require stacks
@@ -24,3 +25,8 @@
 //= require bootstrap/gritter-conf.js
 //= require bootstrap/sparkline-chart
 //= require bootstrap/zabuto_calendar
+//
+$(document).ready(function() {
+  /* Activating Best In Place */
+  $(".best_in_place").best_in_place();
+});

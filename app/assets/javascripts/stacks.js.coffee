@@ -7,8 +7,8 @@ $(document
   $("input#task_name").val("")
   true
 ).on("ajax:success", "form#new_task", (event, data, status, error) ->
-  console.log("HUH?")
-  $("ul#task_list").append data
+  $("ul#task_list").append(data)
+  $(".best_in_place").best_in_place()
 )
 
 $(document).on("ajax:send", ".complete-task", (e)->

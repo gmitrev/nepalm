@@ -39,6 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
+gem 'best_in_place', '~> 3.0.1'
 
 group :development do
   gem 'pry'

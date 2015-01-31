@@ -208,7 +208,7 @@
 
               <li class="sub-menu">
                 <%= link_to project_path(project) do %>
-                  <i class="fa fa-folder"></i>
+                  <i class="fa <%= @project && @project.id == project.id ? "fa-folder-open" : "fa-folder" %>"></i>
                   <span><%= project.name %></span>
                 <% end %>
               </li>
