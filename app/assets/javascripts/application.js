@@ -26,7 +26,6 @@
 //= require bootstrap/sparkline-chart
 //= require bootstrap/zabuto_calendar
 //
-$(document).ready(function() {
-  /* Activating Best In Place */
+$(document).on("ready page:load", '', function() {
   $(".best_in_place").best_in_place();
 });
