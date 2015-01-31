@@ -1,6 +1,5 @@
-<h1>Editing stack</h1>
+<% content_for :title do %>
+  <%= @project.name %>
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @stack %> |
-<%= link_to 'Back', stacks_path %>

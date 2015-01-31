@@ -10,6 +10,26 @@ class Stack < ActiveRecord::Base
     end
   end
 
+  def completed_tasks
+    tasks = task_list.tasks
+    total = tasks.count
+    completed = tasks.select(&:completed?).count
+
+    "#{completed}/#{total}"
+  end
+
+  def completed_percentage
+    tasks = task_list.tasks
+    total = tasks.count
+    completed = tasks.select(&:completed?).count
+
+    if total.zero? || completed.zero?
+      0
+    else
+      (completed.to_f / total.to_f) * 100
+    end
+  end
+
   # Utility method
   def task_list
     task_lists.first

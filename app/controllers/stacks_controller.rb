@@ -43,7 +43,7 @@ class StacksController < ApplicationController
   def update
     respond_to do |format|
       if @stack.update(stack_params)
-        format.html { redirect_to @stack, notice: 'Stack was successfully updated.' }
+        format.html { redirect_to @project, notice: 'Stack was successfully updated.' }
         format.json { render :show, status: :ok, location: @stack }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class StacksController < ApplicationController
   def destroy
     @stack.destroy
     respond_to do |format|
-      format.html { redirect_to stacks_url, notice: 'Stack was successfully destroyed.' }
+      format.html { redirect_to @project, notice: 'Stack was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
