@@ -22,6 +22,9 @@ test:
 
 production:
   adapter: postgresql
-  database: nepalm_production
+  database: ***REMOVED***
   pool: 5
   timeout: 5000
+  username: ***REMOVED***
+  password: ***REMOVED***
+  host: ***REMOVED***
