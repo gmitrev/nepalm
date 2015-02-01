@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'spring',        group: :development
+gem "font-awesome-rails"
 
 # Use unicorn as the app server
 # gem 'unicorn'
