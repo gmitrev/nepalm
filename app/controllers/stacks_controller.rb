@@ -69,7 +69,7 @@ class StacksController < ApplicationController
     end
 
     def set_project
-      @project = current_user.projects.find(params[:project_id])
+      @project = current_user.all_projects.find(params[:project_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

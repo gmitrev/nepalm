@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :organizations
+
   resources :projects do
     collection do
       get :test

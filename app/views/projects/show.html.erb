@@ -1,4 +1,9 @@
 <% content_for :title do %>
+  <% unless @project.owner == current_user %>
+    <%= @project.owner.human %>
+    <i class='fa fa-angle-right'></i>
+  <% end %>
+
   <%= @project.name %>
 <% end %>
 

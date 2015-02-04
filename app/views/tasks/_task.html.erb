@@ -14,7 +14,7 @@
       <%= best_in_place task, :name, as: :input, inner_class: "form-control form-control-smaller", activator: "#edit-task-#{task.id}" %>
     </span>
     <!-- <span class="badge bg&#45;warning">Important</span> -->
-    <div class="pull-right">
+    <div class="pull-right hidden-phone">
 
       <%= link_to "#!", id: "edit-task-#{task.id}", class: 'edit-task btn btn-primary btn-xs', title: "Edit" do %>
         <i class="fa fa-pencil"></i>

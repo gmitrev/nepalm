@@ -195,6 +195,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   font-awesome-rails
+  globalid
   jbuilder (~> 2.0)
   jquery-rails
   pg

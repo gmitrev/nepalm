@@ -25,6 +25,7 @@ gem "font-awesome-rails"
 gem 'devise'
 gem 'best_in_place', '~> 3.0.1'
 gem 'rails_12factor'
+gem 'globalid'
 
 group :development do
   gem 'sqlite3'
