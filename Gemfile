@@ -26,6 +26,7 @@ gem 'devise'
 gem 'best_in_place', '~> 3.0.1'
 gem 'rails_12factor'
 gem 'globalid'
+gem 'gravatarify', '~> 3.0.0'
 
 group :development do
   gem 'sqlite3'

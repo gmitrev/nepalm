@@ -1,9 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
+<% content_for :title do %>
   <%= @organization.name %>
-</p>
+<% end %>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+<% @organization.users.in_groups_of(3).each do |group| %>
+
+  <div class="row">
+
+    <% group.compact.each do |user|  %>
+      <div class="col-lg-4 col-md-4 col-sm-4 mb">
+        <div class="content-panel pn">
+          <div id="profile-02">
+            <div class="user">
+              <%# <%= image_tag 'friends/fr-06.jpg', class: 'img-circle', width: 80 %>
+              <%= gravatar_tag user.email, size: 80, html: {  class: 'img-circle'} %>
+              <h4><%= user.email %></h4>
+            </div>
+          </div>
+          <div class="pr2-social centered">
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+          </div>
+        </div><! --/panel -->
+      </div><!--/ col-md-4 -->
+    <% end %>
+
+  </div>
+
+<% end %>

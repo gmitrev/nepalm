@@ -73,6 +73,7 @@ GEM
       railties (>= 3.2, < 5.0)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
+    gravatarify (3.0.0)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.6)
@@ -196,6 +197,7 @@ DEPENDENCIES
   devise
   font-awesome-rails
   globalid
+  gravatarify (~> 3.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   pg
