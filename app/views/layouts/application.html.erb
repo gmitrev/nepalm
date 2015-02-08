@@ -151,10 +151,13 @@
         <section class="wrapper">
 
           <div class="row">
-            <div class="col-lg-9 main-chart">
-          <h3>
-            <%= content_for?(:title) ? yield(:title) : "FILL ME" %>
-          </h3>
+            <div class="col-lg-9">
+              <%= render partial: "shared/flash_messages", flash: flash %>
+
+              <h3>
+                <%= content_for?(:title) ? yield(:title) : "FILL ME" %>
+              </h3>
+
               <%= yield %>
             </div><!-- /col-lg-9 END SECTION MIDDLE -->
 

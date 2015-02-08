@@ -20,6 +20,13 @@
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-dribbble"></i></a>
+
+            <% if admin_for?(@organization) %>
+              <%= link_to edit_membership_path(user.membership(@organization)) do %>
+                <i class="fa fa-wrench"></i>options
+              <% end %>
+            <% end %>
+
           </div>
         </div><! --/panel -->
       </div><!--/ col-md-4 -->
@@ -27,4 +34,14 @@
 
   </div>
 
+<% end %>
+
+<% if admin_for?(@organization) %>
+  <div class='row'>
+    <div class='col-lg-12'>
+      <%= link_to new_members_organization_path(@organization), class: 'btn btn-lg btn-theme03' do %>
+        Add users
+      <% end %>
+    </div>
+  </div>
 <% end %>

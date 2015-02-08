@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   def human
     email
   end
+
+  def membership(organization)
+    Membership.find_by(user: self, organization: organization)
+  end
 end

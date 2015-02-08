@@ -22,11 +22,21 @@
 
           <br />
 
-          <ul id='task_list' class="task-list">
-            <% @stack.task_list.tasks.each do |task| %>
-              <%= render partial: 'tasks/task', locals: {task: task} %>
-            <% end %>
-          </ul>
+
+            <ul id='task_list' class="task-list">
+              <% @stack.task_list.tasks.each do |task| %>
+                <%= render partial: 'tasks/task', locals: {task: task} %>
+              <% end %>
+            </ul>
+
+
+          <% if @stack.task_list.tasks.none? %>
+
+            <div id='no-tasks-msg' class="alert alert-info">
+              <b>No tasks yet. </b> Create the first one from the form above!
+            </div>
+
+          <% end %>
         </div>
 
         <div class="add-task-row hide">

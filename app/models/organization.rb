@@ -11,4 +11,9 @@ class Organization < ActiveRecord::Base
   def human
     name
   end
+
+  before_create do
+    memberships.first.role = 'admin'
+  end
+
 end

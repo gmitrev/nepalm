@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :set_organization, only: [:show, :edit, :update, :destroy, :new_members, :add_members]
 
   # GET /organizations
   # GET /organizations.json
@@ -60,6 +60,23 @@ class OrganizationsController < ApplicationController
       format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def new_members
+  end
+
+  def add_members
+    respond_to do |format|
+      user = User.find_by_email(params[:users])
+      if user && user.organizations << @organization
+        format.html { redirect_to @organization, notice: 'User successfully added to organization.' }
+        format.json { render :show, status: :ok, location: @organization }
+      else
+        format.html { redirect_to @organization, alert: 'User not found.' }
+        format.json { render json: @organization.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   private
