@@ -2,6 +2,9 @@ class Stack < ActiveRecord::Base
   belongs_to :project
   has_many :task_lists
 
+  has_many :memberships
+  has_many :users, through: :memberships
+
   def summary
     if(read_attribute(:summary).present?)
       read_attribute(:summary)

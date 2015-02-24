@@ -14,6 +14,8 @@
 //= require best_in_place
 //= require jquery_ujs
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //= require stacks
 //= require bootstrap/bootstrap.min
 //= require bootstrap/jquery.scrollTo.min

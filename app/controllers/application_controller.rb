@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  def admin_for?(organization)
-    current_user.membership(organization).admin?
+  def admin_for?(stack)
+    current_user.membership(stack).admin?
   end
 
-  def authorize_user!(organization)
+  def authorize_user!(stack)
     if !admin_for?(organization)
       redirect_to :root, notice: "Not authorized"
     end

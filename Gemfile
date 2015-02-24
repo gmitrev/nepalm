@@ -21,6 +21,7 @@ gem "font-awesome-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'nprogress-rails'
 
 gem 'devise'
 gem 'best_in_place', '~> 3.0.1'

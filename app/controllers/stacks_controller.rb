@@ -1,5 +1,5 @@
 class StacksController < ApplicationController
-  before_action :set_stack, only: [:show, :edit, :update, :destroy]
+  before_action :set_stack, only: [:show, :edit, :update, :destroy, :members, :new_member, :add_member]
   before_action :set_project
 
   # GET /stacks
@@ -26,6 +26,7 @@ class StacksController < ApplicationController
   # POST /stacks.json
   def create
     @stack = Stack.new(stack_params.merge({project_id: @project.id}))
+    @stack.users << current_user
 
     respond_to do |format|
       if @stack.save
@@ -62,14 +63,32 @@ class StacksController < ApplicationController
     end
   end
 
+  def members
+  end
+
+  def new_member
+  end
+
+  def add_member
+    respond_to do |format|
+      user = User.find_by_email(params[:users])
+      if user && user.stacks << @stack
+        format.html { redirect_to members_project_stack_path(@project, @stack), notice: 'User successfully added to stack.' }
+      else
+        format.html { redirect_to members_project_stack_path(@project, @stack), alert: 'User not found.' }
+      end
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stack
-      @stack = Stack.find(params[:id])
+      @stack = current_user.stacks.find(params[:id])
     end
 
     def set_project
-      @project = current_user.all_projects.find(params[:project_id])
+      @project = current_user.all_projects.find(params[:project_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

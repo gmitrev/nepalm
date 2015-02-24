@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+  before_action :set_stacks, only: [:show]
+
   before_action :authenticate_user!
 
   # GET /projects
@@ -27,7 +29,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    @project.owner = GlobalID::Locator.locate(project_params[:owner_id])
+    @project.owner = current_user
 
     respond_to do |format|
       if @project.save
@@ -67,11 +69,15 @@ class ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = current_user.all_projects.find(params[:id])
+      @project = current_user.all_projects.find(params[:id]).first
+    end
+
+    def set_stacks
+      @stacks = current_user.stacks.where(project: @project)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :owner_id)
+      params.require(:project).permit(:name)
     end
 end

@@ -32,12 +32,6 @@
             <%= f.text_field :name, class: 'form-control' %>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-sm-2 col-sm-2 control-label">Owner</label>
-          <div class="col-sm-10">
-            <%= f.grouped_collection_select :owner_id, [ current_user.organizations, User.where(id: current_user.id)  ], :all, :model_name, :to_global_id, :human, {}, class: "form-control" %>
-          </div>
-        </div>
         <button type="submit" class="btn btn-theme">Create</button>
       <% end %>
     </div>

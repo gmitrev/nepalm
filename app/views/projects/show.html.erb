@@ -10,8 +10,8 @@
 <div class="row mt">
   <div class="col-lg-12">
 
-    <% if @project.stacks.any?  %>
-      <% @project.stacks.in_groups_of(3).each do |stacks| %>
+    <% if @stacks.any?  %>
+      <% @stacks.in_groups_of(3).each do |stacks| %>
 
         <div class="row">
 
@@ -50,6 +50,8 @@
                   <%= link_to 'Open',  [@project, stack], class: 'btn btn-theme03' %>
                   &nbsp;
                   <%= link_to 'Settings', edit_project_stack_path(@project.id, stack.id) %>
+                  &nbsp;
+                  <%= link_to 'Members', members_project_stack_path(@project.id, stack.id) %>
                 </p>
               </div>
             </div><!-- /col-md-4 -->

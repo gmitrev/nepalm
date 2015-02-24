@@ -7,23 +7,26 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :memberships
-  has_many :organizations, through: :memberships
+  has_many :stacks, through: :memberships
 
-  has_many :projects, as: :owner
+  has_many :projects, foreign_key: :owner_id
 
   def all_projects
-    owners = [self, self.organizations.all].flatten.map do |o|
-      "(projects.owner_id = #{o.id} AND projects.owner_type = '#{o.class.name}')"
-    end.join(" OR ")
-
-    Project.where(owners)
+    stacks.flat_map(&:project).uniq
+    # owners = [self, self.organizations.all].flatten.map do |o|
+    #   "(projects.owner_id = #{o.id} AND projects.owner_type = '#{o.class.name}')"
+    # end.join(" OR ")
+    #
+    # projects
+    #
+    # Project.where(owners)
   end
 
   def human
     email
   end
 
-  def membership(organization)
-    Membership.find_by(user: self, organization: organization)
+  def membership(stack)
+    Membership.find_by(user: self, stack: stack)
   end
 end
