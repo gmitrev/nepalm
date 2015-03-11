@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_many :projects, foreign_key: :owner_id
 
   def all_projects
-    stacks.flat_map(&:project).uniq
+    (stacks.flat_map(&:project) + projects).flatten.uniq
     # owners = [self, self.organizations.all].flatten.map do |o|
     #   "(projects.owner_id = #{o.id} AND projects.owner_type = '#{o.class.name}')"
     # end.join(" OR ")
