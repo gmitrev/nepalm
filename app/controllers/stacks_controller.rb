@@ -27,6 +27,8 @@ class StacksController < ApplicationController
   def create
     @stack = Stack.new(stack_params.merge({project_id: @project.id}))
     @stack.users << current_user
+    membership = @stack.memberships.where
+    @stack.memberships.select { |r| r[:user_id].to_i == current_user.id }.first.role = 'admin' # First user should be admin
 
     respond_to do |format|
       if @stack.save
