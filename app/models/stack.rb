@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: stacks
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  summary    :text
+#  project_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Stack < ActiveRecord::Base
   belongs_to :project
   has_many :task_lists

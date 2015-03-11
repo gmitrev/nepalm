@@ -36,6 +36,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (6.0.0)
     awesome_print (1.6.1)
     bcrypt (3.1.10)
@@ -192,6 +195,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.6.5)
   awesome_print
   best_in_place (~> 3.0.1)
   coffee-rails (~> 4.1.0)

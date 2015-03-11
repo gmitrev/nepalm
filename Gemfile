@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'spring',        group: :development
 gem "font-awesome-rails"
+gem 'annotate', '~> 2.6.5'
 
 # Use unicorn as the app server
 # gem 'unicorn'
