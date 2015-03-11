@@ -88,7 +88,7 @@ class StacksController < ApplicationController
     end
 
     def set_project
-      @project = current_user.all_projects.find(params[:project_id]).first
+      @project = current_user.all_projects.select{ |r| r.id == params[:project_id].to_i }.first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
