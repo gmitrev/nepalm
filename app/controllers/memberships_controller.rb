@@ -13,7 +13,7 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
-        format.html { redirect_to @organization, notice: 'Project was successfully updated.' }
+        format.html { redirect_to @stack, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
     @membership.destroy
 
     respond_to do |format|
-      format.html { redirect_to @organization, notice: 'User was successfully removed from the organization.' }
+      format.html { redirect_to @stack, notice: 'User was successfully removed from the stack.' }
       format.json { head :no_content }
     end
   end
