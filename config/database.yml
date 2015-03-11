@@ -28,3 +28,14 @@ production:
   username: ***REMOVED***
   password: ***REMOVED***
   host: ***REMOVED***
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: nepalm_development
+  pool: 5
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  template: template0
