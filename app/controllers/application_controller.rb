@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_user!(stack)
-    if !admin_for?(organization)
+    if !admin_for?(stack)
       redirect_to :root, notice: "Not authorized"
     end
   end

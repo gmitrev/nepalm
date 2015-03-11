@@ -4,7 +4,7 @@ class MembershipsController < ApplicationController
   before_action :authenticate_user!
 
   before_action do |m|
-    authorize_user!(@organization)
+    authorize_user!(@stack)
   end
 
   def edit
@@ -36,7 +36,7 @@ class MembershipsController < ApplicationController
     def set_membership
       @membership = Membership.find(params[:id])
       @user = @membership.user
-      @organization = @membership.organization
+      @stack = @membership.stack
     end
 
     def membership_params
