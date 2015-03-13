@@ -20,12 +20,18 @@
             <div class="col-lg-4 col-md-4 col-sm-4 mb">
               <div class="white-panel pn">
                 <div class="white-header">
-                  <h5><%= stack.name %></h5>
+                  <%= link_to [@project, stack] do %>
+                    <h5>
+                      <%= stack.name %>
+                      &nbsp;
+                      <i class="fa fa-angle-double-right"></i>
+                    </h5>
+                  <% end %>
                 </div>
                 <div class='white-summary'>
-                  <b>
-                    <%= stack.summary.truncate(30) %>
-                  </b>
+                  <% stack.users.take(10).each do |user| %>
+                    <%= gravatar_tag user.email, size: 39, html: {  class: 'img-circle', title: user.email } %>
+                    <% end %>
                 </div>
                 <div class="row">
                   <div class="col-xs-6">
@@ -46,13 +52,9 @@
                     </div>
                   </div>
                 </div>
-                <p>
-                  <%= link_to 'Open',  [@project, stack], class: 'btn btn-theme03' %>
-                  &nbsp;
-                  <%= link_to 'Settings', edit_project_stack_path(@project.id, stack.id) %>
-                  &nbsp;
-                  <%= link_to 'Members', members_project_stack_path(@project.id, stack.id) %>
-                </p>
+                  <%# <%= link_to 'Open',  [@project, stack], class: 'btn btn-theme03' %>
+                  <%# <%= link_to 'Settings', edit_project_stack_path(@project.id, stack.id) %>
+                  <%# <%= link_to 'Members', members_project_stack_path(@project.id, stack.id) %>
               </div>
             </div><!-- /col-md-4 -->
 

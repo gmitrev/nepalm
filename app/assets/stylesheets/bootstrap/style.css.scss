@@ -1097,7 +1097,9 @@ PANELS CONFIGURATIONS
 	margin-top: 5px;
 	margin-bottom: 5px;
 	font-weight: 700;
-	margin-left: 15px;
+	margin-left: 13px;
+	margin-right: 7px;
+  min-height: 70px;
   padding-bottom: 10px;
 }
 .white-panel .white-progress{
@@ -1108,11 +1110,6 @@ PANELS CONFIGURATIONS
 	color: #ccd1d9;
 }
 
-.white-panel i {
-	color: #68dff0;
-	padding-right: 4px;
-	font-size: 14px;
-}
 
 /*STOCK CARD Panel*/
 .card {

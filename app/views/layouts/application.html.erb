@@ -34,7 +34,7 @@
 
             <p class="centered">
             <a href="profile.html">
-              <%= image_tag 'ui-sam.jpg', class: 'img-circle', width: '60' %>
+              <%= gravatar_tag current_user.email, size: 59, html: {  class: 'img-circle' } %>
             </a></p>
             <h5 class="centered"><%= current_user.email %></h5>
 
