@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  # resources :comments
+
   resources :memberships
 
   # resources :organizations do
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
       get :test
     end
     resources :stacks do
+      resources :comments
+
       member do
         get :members, :new_member
         post :add_member

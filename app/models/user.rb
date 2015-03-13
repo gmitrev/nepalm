@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :stacks, through: :memberships
+  has_many :comments
 
   has_many :projects, foreign_key: :owner_id
 

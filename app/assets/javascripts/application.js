@@ -16,7 +16,10 @@
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
+//= require rails-timeago
+//= require comments
 //= require stacks
+//= require tasks
 //= require bootstrap/bootstrap.min
 //= require bootstrap/jquery.scrollTo.min
 //= require bootstrap/jquery.nicescroll.js

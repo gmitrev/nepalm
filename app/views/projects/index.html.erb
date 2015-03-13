@@ -6,13 +6,13 @@
   <div class="col-lg-12">
 
     <% if @projects.any?  %>
-      <% @projects.in_groups_of(3).each do |projects| %>
+      <% @projects.in_groups_of(4).each do |projects| %>
 
         <div class="row">
 
           <% projects.compact.each do |project| %>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 mb">
+            <div class="col-lg-3 col-md-3 col-sm-3 mb">
               <div class="white-panel pn">
                 <div class="white-header">
                   <%= link_to project do %>

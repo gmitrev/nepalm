@@ -46,4 +46,42 @@
       </div>
     </section>
   </div><!-- /col-md-12-->
+
+  <div class="col-md-12">
+    <section class="task-panel tasks-widget">
+      <div class="panel-heading">
+        <div class="pull-left"><h4><i class="fa fa-comments"></i> Discussion </h4></div>
+        <br>
+      </div>
+      <div class="panel-body">
+        <div class="task-content">
+
+          <div id="comments">
+            <% if @stack.comments.none? %>
+              <div id='no-comments-msg' class="alert alert-info">
+                <b>No comments yet. </b> Create the first one from the form below.
+              </div>
+            <% else %>
+              <% @stack.comments.order("created_at ASC").each do |comment| %>
+                  <%= render partial: 'comments/comment', locals: { comment: comment } %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <br />
+
+          <%= form_for([@project, @stack, @stack.comments.build], remote: true) do |f| %>
+            <%= f.text_area :body,
+              class: 'form-control',
+              placeholder: 'Enter comment' %>
+
+            <br />
+            <%= f.submit "Post comment", class: "btn btn-success btn-sm" %>
+          <% end %>
+
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /col-md-12-->
 </div><!-- /row -->

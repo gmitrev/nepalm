@@ -985,7 +985,6 @@ PANELS CONFIGURATIONS
 /*Panel Size*/
 
 .pn {
-	height: 250px;
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -1092,6 +1091,12 @@ PANELS CONFIGURATIONS
 	padding: 3px;
 	margin-bottom: 15px;
 	color: #bbb;
+
+  a{
+    h5 {
+      font-weight: bold;
+    }
+  }
 }
 .white-panel .white-summary{
 	margin-top: 5px;
