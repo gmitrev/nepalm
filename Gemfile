@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.0'
+
 gem 'rails', '4.2.0'
 gem 'pg'
 gem 'sass-rails', '~> 5.0.1'
@@ -16,6 +18,7 @@ gem 'spring',        group: :development
 gem "font-awesome-rails"
 gem 'annotate', '~> 2.6.5'
 gem 'rails-timeago', '~> 2.0'
+gem 'puma'
 
 # Use unicorn as the app server
 # gem 'unicorn'
