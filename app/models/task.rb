@@ -13,8 +13,12 @@
 class Task < ActiveRecord::Base
   belongs_to :task_list
 
+  def not_completed?
+    !completed?
+  end
+
   def complete!
-    update_column(:completed, true)
+    update_attributes(completed: true, completed_at: Time.now)
   end
 
   def uncomplete!

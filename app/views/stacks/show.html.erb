@@ -22,21 +22,36 @@
 
           <br />
 
+          <ul id='task_list' class="task-list">
+            <% @stack.task_list.tasks.select(&:not_completed?).each do |task| %>
+              <%= render partial: 'tasks/task', locals: {task: task} %>
+            <% end %>
 
-            <ul id='task_list' class="task-list">
-              <% @stack.task_list.tasks.each do |task| %>
-                <%= render partial: 'tasks/task', locals: {task: task} %>
-              <% end %>
-            </ul>
+          </ul>
 
+          <ul id='task_list_completed' class="task-list task-list-completed">
+            <% @stack.task_list.tasks.select(&:completed?).sort_by(&:completed_at).reverse.each do |task| %>
+              <%= render partial: 'tasks/task', locals: {task: task} %>
+            <% end %>
+
+            <br />
+          </ul>
+
+          <%= link_to "#!", id: 'show-completed-tasks', class: 'btn btn-info btn-sm btn-block' do %>
+            <span class='action-show'>
+              Show completed (<%= @stack.task_list.tasks.select(&:completed?).count %>)
+            </span>
+            <span class="action-hide" style='display: none'>
+              Hide completed
+            </span>
+          <% end %>
 
           <% if @stack.task_list.tasks.none? %>
-
             <div id='no-tasks-msg' class="alert alert-info">
               <b>No tasks yet. </b> Create the first one from the form above!
             </div>
-
           <% end %>
+
         </div>
 
         <div class="add-task-row hide">

@@ -37,6 +37,10 @@
   margin:0;
 }
 
+.tasks-widget  .task-list.task-list-completed {
+  display: none
+}
+
 .tasks-widget .task-list > li {
   position:relative;
   padding:10px 5px;
@@ -66,6 +70,10 @@
 .tasks-widget .task-list  li > .task-title  {
   overflow:hidden;
   margin-right:10px;
+}
+
+.tasks-widget .task-list  li > .task-title time  {
+  color: #bbb;
 }
 
 .tasks-widget .task-list  li > .task-config {

@@ -28,5 +28,19 @@ $(document).on("ajax:send", ".delete-task", (e)->
 
     if $("li.task").size() == 0
       $("div#no-tasks-msg").show()
-
 )
+
+$(document).on("click", "#show-completed-tasks", (e)->
+  $("#task_list_completed").slideToggle()
+
+  if $(this).hasClass("less")
+    $(this).removeClass("less")
+    $(this).children(".action-show").show()
+    $(this).children(".action-hide").hide()
+  else
+    $(this).addClass("less")
+    $(this).children(".action-show").hide()
+    $(this).children(".action-hide").show()
+)
+
+

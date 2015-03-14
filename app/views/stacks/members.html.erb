@@ -2,12 +2,12 @@
   <%= @stack.name %>
 <% end %>
 
-<% @stack.users.in_groups_of(3).each do |group| %>
+<% @stack.users.in_groups_of(4).each do |group| %>
 
   <div class="row">
 
     <% group.compact.each do |user|  %>
-      <div class="col-lg-4 col-md-4 col-sm-4 mb">
+      <div class="col-lg-3 col-md-3 col-sm-3 mb">
         <div class="content-panel pn">
           <div id="profile-02">
             <div class="user">
