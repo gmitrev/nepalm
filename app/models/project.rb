@@ -35,4 +35,8 @@ class Project < ActiveRecord::Base
       (completed.to_f / total.to_f) * 100
     end
   end
+
+  def to_s
+    name
+  end
 end

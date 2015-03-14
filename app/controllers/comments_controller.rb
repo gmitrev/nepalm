@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_stack, :set_project
 
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = @stack.comments
   end
 
   # GET /comments/1
@@ -67,6 +68,16 @@ class CommentsController < ApplicationController
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_stack
+      @stack = current_user.stacks.find(params[:stack_id])
+    end
+
+    def set_project
+      @project = @stack.project
+    end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])

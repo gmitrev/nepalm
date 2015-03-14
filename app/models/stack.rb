@@ -56,4 +56,8 @@ class Stack < ActiveRecord::Base
     task_lists.create(name: "Tasks")
   end
 
+  def to_s
+    name
+  end
+
 end

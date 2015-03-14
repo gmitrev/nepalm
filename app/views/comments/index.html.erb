@@ -1,31 +1,52 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+  <%= link_to @project, @project %>
+  <i class='fa fa-angle-right'></i>
+  <%= link_to @stack, project_stack_path(@stack.project, @stack) %>
+  <i class='fa fa-angle-right'></i>
+  Comments
+<% end %>
 
-<h1>Listing Comments</h1>
+<div class="row mt">
 
-<table>
-  <thead>
-    <tr>
-      <th>Body</th>
-      <th>User</th>
-      <th>Stack</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="col-md-12">
+    <section class="task-panel tasks-widget">
+      <div class="panel-heading">
+        <div class="pull-left"><h4><i class="fa fa-comments"></i>
+            Discussion
+          </h4></div>
+        <br>
+      </div>
+      <div class="panel-body">
+        <div class="task-content">
+          <div id="comments">
+            <div class='comments-count'>
+              Showing <%= @comments.count %> comments.
+            </div>
+            <% if @comments.none? %>
+              <div id='no-comments-msg' class="alert alert-info">
+                <b>No comments yet. </b> Create the first one from the form below.
+              </div>
+            <% else %>
+              <% @comments.each do |comment| %>
+                  <%= render partial: 'comments/comment', locals: { comment: comment } %>
+              <% end %>
+            <% end %>
+          </div>
 
-  <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.body %></td>
-        <td><%= comment.user %></td>
-        <td><%= comment.stack %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <br />
 
-<br>
+          <%= form_for([@project, @stack, @stack.comments.build], remote: true) do |f| %>
+            <%= f.text_area :body,
+              class: 'form-control',
+              placeholder: 'Enter comment' %>
 
-<%= link_to 'New Comment', new_comment_path %>
+            <br />
+            <%= f.submit "Post comment", class: "btn btn-success btn-sm" %>
+          <% end %>
+
+        </div>
+
+      </div>
+    </section>
+  </div><!-- /col-md-12-->
+</div><!-- /row -->

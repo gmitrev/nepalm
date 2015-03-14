@@ -1,7 +1,7 @@
 <% content_for :title do %>
-  <%= @project.name %>
+  <%= link_to @project, @project %>
   <i class='fa fa-angle-right'></i>
-  <%= @stack.name %>
+  <%= link_to @stack, project_stack_path(@stack.project, @stack) %>
 <% end %>
 
 <div class="row mt">
@@ -65,19 +65,28 @@
   <div class="col-md-12">
     <section class="task-panel tasks-widget">
       <div class="panel-heading">
-        <div class="pull-left"><h4><i class="fa fa-comments"></i> Discussion </h4></div>
+        <div class="pull-left"><h4><i class="fa fa-comments"></i>
+            Discussion
+          </h4></div>
         <br>
       </div>
       <div class="panel-body">
         <div class="task-content">
-
           <div id="comments">
-            <% if @stack.comments.none? %>
+          <% if @all_comments_count > 10 %>
+            <div class='comments-count'>
+              Showing <%= @comments.count %> of <%= @all_comments_count %>.
+              <%= link_to project_stack_comments_path(@project, @stack) do %>
+                View all
+              <% end %>
+            </div>
+          <% end %>
+            <% if @comments.none? %>
               <div id='no-comments-msg' class="alert alert-info">
                 <b>No comments yet. </b> Create the first one from the form below.
               </div>
             <% else %>
-              <% @stack.comments.order("created_at ASC").each do |comment| %>
+              <% @comments.reverse.each do |comment| %>
                   <%= render partial: 'comments/comment', locals: { comment: comment } %>
               <% end %>
             <% end %>
