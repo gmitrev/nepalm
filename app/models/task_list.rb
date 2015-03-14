@@ -11,5 +11,5 @@
 
 class TaskList < ActiveRecord::Base
   belongs_to :stack
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
 end

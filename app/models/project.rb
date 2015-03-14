@@ -10,7 +10,7 @@
 #
 
 class Project < ActiveRecord::Base
-  has_many :stacks
+  has_many :stacks, dependent: :destroy
 
   belongs_to :owner, class_name: "User"
 

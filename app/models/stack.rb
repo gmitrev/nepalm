@@ -12,11 +12,11 @@
 
 class Stack < ActiveRecord::Base
   belongs_to :project
-  has_many :task_lists
+  has_many :task_lists, dependent: :destroy
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   def summary
     if(read_attribute(:summary).present?)
