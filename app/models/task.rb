@@ -27,5 +27,11 @@ class Task < ActiveRecord::Base
 
   def toggle!
     update_column(:completed, !self.completed?)
+
+    if self.completed?
+      update_column(:completed_at, Time.now)
+    else
+      update_column(:completed_at, nil)
+    end
   end
 end
