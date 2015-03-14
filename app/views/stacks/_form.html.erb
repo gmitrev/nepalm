@@ -19,7 +19,7 @@
         <button type="submit" class="btn btn-theme">Save</button>
         <% if @stack.persisted? %>
           <div class='pull-right'>
-            <%= link_to "Delete", [@project, @stack], method: :delete, class: "btn btn-danger", confirm: "Are you sure?" %>
+            <%= link_to "Delete", [@project, @stack], method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
           </div>
         <% end %>
       <% end %>

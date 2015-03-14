@@ -1,5 +1,28 @@
 <% content_for :title do %>
-  <%= @stack.name %>
+  <%= link_to @project, @project %>
+  <i class='fa fa-angle-right'></i>
+  <%= link_to @stack, project_stack_path(@stack.project, @stack) %>
+  <i class='fa fa-angle-right'></i>
+  <%= link_to 'People', members_project_stack_path(@project, @stack) %>
+  <i class='fa fa-angle-right'></i>
+  Add
+<% end %>
+
+<% content_for :submenu do %>
+  <ul class="nav nav-pills pull-right">
+    <li role="presentation"><a href="#discussion">Discussion</a></li>
+    <li role="presentation"><a href="#notes">Notes</a></li>
+    <li role="presentation">
+      <%= link_to members_project_stack_path(@project, @stack) do %>
+        People
+      <% end %>
+    </li>
+    <li role="presentation">
+      <%= link_to edit_project_stack_path(@project, @stack) do %>
+        Settings
+      <% end %>
+    </li>
+  </ul>
 <% end %>
 
 <div class="row mt">

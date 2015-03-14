@@ -33,7 +33,7 @@
           <ul class="sidebar-menu" id="nav-accordion">
 
             <p class="centered">
-            <a href="profile.html">
+            <a href="#!">
               <%= gravatar_tag current_user.email, size: 59, html: {  class: 'img-circle' } %>
             </a></p>
             <h5 class="centered"><%= current_user.email %></h5>
@@ -154,9 +154,16 @@
             <div class="col-lg-12">
               <%= render partial: "shared/flash_messages", flash: flash %>
 
-              <h3 id='breadcrumbs'>
-                <%= content_for?(:title) ? yield(:title) : "FILL ME" %>
-              </h3>
+              <div class="row">
+                <div class='col-md-6 col-xs-12'>
+                  <h3 id='breadcrumbs'>
+                    <%= content_for?(:title) ? yield(:title) : "FILL ME" %>
+                  </h3>
+                </div>
+                <div class='col-md-6 col-xs-12 submenu'>
+                  <%= content_for?(:submenu) ? yield(:submenu) : "" %>
+                </div>
+              </div>
 
               <%= yield %>
             </div><!-- /col-lg-9 END SECTION MIDDLE -->

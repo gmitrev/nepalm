@@ -36,6 +36,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def comments_count
+    stacks.flat_map(&:comments).count
+  end
+
   def to_s
     name
   end

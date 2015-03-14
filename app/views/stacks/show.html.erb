@@ -4,6 +4,23 @@
   <%= link_to @stack, project_stack_path(@stack.project, @stack) %>
 <% end %>
 
+<% content_for :submenu do %>
+  <ul class="nav nav-pills pull-right">
+    <li role="presentation"><a href="#discussion">Discussion</a></li>
+    <li role="presentation"><a href="#notes">Notes</a></li>
+    <li role="presentation">
+      <%= link_to members_project_stack_path(@project, @stack) do %>
+        People
+      <% end %>
+    </li>
+    <li role="presentation">
+      <%= link_to edit_project_stack_path(@project, @stack) do %>
+        Settings
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
 <div class="row mt">
   <div class="col-md-12">
     <section class="task-panel tasks-widget">
@@ -63,6 +80,7 @@
   </div><!-- /col-md-12-->
 
   <div class="col-md-12">
+    <a name="discussion"></a> </a>
     <section class="task-panel tasks-widget">
       <div class="panel-heading">
         <div class="pull-left"><h4><i class="fa fa-comments"></i>
@@ -70,6 +88,7 @@
           </h4></div>
         <br>
       </div>
+
       <div class="panel-body">
         <div class="task-content">
           <div id="comments">

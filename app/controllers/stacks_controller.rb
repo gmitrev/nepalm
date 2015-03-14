@@ -2,6 +2,10 @@ class StacksController < ApplicationController
   before_action :set_stack, only: [:show, :edit, :update, :destroy, :members, :new_member, :add_member]
   before_action :set_project
 
+  before_action only: [:new_member, :add_member] do |m|
+    authorize_user!(@stack)
+  end
+
   # GET /stacks
   # GET /stacks.json
   def index

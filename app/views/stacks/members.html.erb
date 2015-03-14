@@ -1,38 +1,61 @@
 <% content_for :title do %>
-  <%= @stack.name %>
+  <%= link_to @project, @project %>
+  <i class='fa fa-angle-right'></i>
+  <%= link_to @stack, project_stack_path(@stack.project, @stack) %>
+  <i class='fa fa-angle-right'></i>
+  <%= link_to 'People', members_project_stack_path(@project, @stack) %>
+<% end %>
+
+<% content_for :submenu do %>
+  <ul class="nav nav-pills pull-right">
+    <li role="presentation"><a href="#discussion">Discussion</a></li>
+    <li role="presentation"><a href="#notes">Notes</a></li>
+    <li role="presentation">
+      <%= link_to members_project_stack_path(@project, @stack) do %>
+        People
+      <% end %>
+    </li>
+    <li role="presentation">
+      <%= link_to edit_project_stack_path(@project, @stack) do %>
+        Settings
+      <% end %>
+    </li>
+  </ul>
 <% end %>
 
 <% @stack.users.in_groups_of(4).each do |group| %>
 
-  <div class="row">
+<br />
 
-    <% group.compact.each do |user|  %>
-      <div class="col-lg-3 col-md-3 col-sm-3 mb">
-        <div class="content-panel pn">
-          <div id="profile-02">
-            <div class="user">
-              <%# <%= image_tag 'friends/fr-06.jpg', class: 'img-circle', width: 80 %>
-              <%= gravatar_tag user.email, size: 80, html: {  class: 'img-circle'} %>
-              <h4><%= user.email %></h4>
-            </div>
+<div class="row">
+
+  <% group.compact.each do |user|  %>
+    <div class="col-lg-3 col-md-3 col-sm-3 mb">
+      <div class="content-panel pn">
+        <div id="profile-02">
+          <div class="user">
+            <%# <%= image_tag 'friends/fr-06.jpg', class: 'img-circle', width: 80 %>
+            <%= gravatar_tag user.email, size: 80, html: {  class: 'img-circle'} %>
+            <h4><%= user.email %></h4>
           </div>
-          <div class="pr2-social centered">
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-dribbble"></i></a>
+        </div>
+        <div class="pr2-social centered">
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-dribbble"></i></a>
 
-            <% if admin_for?(@stack) %>
-              <%= link_to edit_membership_path(user.membership(@stack)) do %>
-                <i class="fa fa-wrench"></i>options
-              <% end %>
+          <% if admin_for?(@stack) %>
+            <%= link_to edit_membership_path(user.membership(@stack)) do %>
+              <i class="fa fa-wrench"></i>options
             <% end %>
+          <% end %>
 
-          </div>
-        </div><! --/panel -->
-      </div><!--/ col-md-4 -->
-    <% end %>
+        </div>
+      </div><! --/panel -->
+    </div><!--/ col-md-4 -->
+  <% end %>
 
-  </div>
+</div>
 
 <% end %>
 

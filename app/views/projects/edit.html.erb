@@ -1,6 +1,7 @@
-<h1>Editing project</h1>
+<% content_for :title do %>
+  <%= link_to @project, @project %>
+  <i class='fa fa-angle-right'></i>
+  <%= link_to 'Settings', edit_project_path(@project) %>
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
