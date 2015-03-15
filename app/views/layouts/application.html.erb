@@ -130,6 +130,13 @@
               <% end %>
             </li>
 
+            <li class="mt">
+              <%= link_to destroy_user_session_path, method: :delete, class: 'logout' do %>
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+              <% end %>
+            </li>
+
             <!-- <li class="mt"> -->
             <!--   <%#= link_to organizations_path do %> -->
             <!--     <i class="fa fa&#45;group"></i> -->
