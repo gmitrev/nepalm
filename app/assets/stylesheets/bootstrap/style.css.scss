@@ -283,6 +283,7 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 }
 
 ul.sidebar-menu {
+  z-index: 2;
     margin-top: 18px;
 }
 
@@ -426,15 +427,6 @@ ul.sidebar-menu li a.active i {
     width: 100%;
 }
 
-@media (max-width: 768px) {
-  .wrapper {
-    margin-top: 60px
-  }
-
-  ul.sidebar-menu{
-    margin-top: 75px;
-  }
-}
 
 a.logo {
     font-size: 20px;
@@ -2243,6 +2235,7 @@ label {
     background: #68dff0;
     color: #fff;
     padding: 10px 0;
+    margin-left: 210px;
 }
 
 
@@ -2290,4 +2283,17 @@ label {
     background: #ffd777;
     height: 60px;
   }
+}
+
+
+// TINY MEDIA
+@media (max-width: 768px) {
+  .wrapper {
+    margin-top: 60px
+  }
+
+  ul.sidebar-menu{
+    margin-top: 75px;
+  }
+
 }
