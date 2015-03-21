@@ -6,8 +6,8 @@
 
   .comments-count {
     margin-bottom: 15px;
-
   }
+
   .comment {
 
     border-top: 1px solid #ddd;
@@ -18,5 +18,9 @@
       color: #bbb;
     }
 
+  }
+
+  .comment.unread{
+    background: #FDF5E6;
   }
 }

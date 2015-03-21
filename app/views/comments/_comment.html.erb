@@ -1,7 +1,7 @@
-<div class="comment">
+<div class="comment <%= @unread_ids.include?(comment.id) ? 'unread' : '' rescue "" %>">
   <div class="row">
     <div class="col-md-1 col-xs-2">
-      <%= gravatar_tag comment.author.email, size: 39, html: {  class: 'img-circle' } %>
+      <%= gravatar_tag comment.author.email, size: 59, html: {  class: 'img-circle' } %>
 
     </div>
     <div class="col-md-11 col-xs-10">

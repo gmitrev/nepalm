@@ -8,25 +8,19 @@ gem 'sass-rails', '~> 5.0.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer',  platforms: :ruby
-
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
 gem 'spring',        group: :development
 gem "font-awesome-rails"
 gem 'annotate', '~> 2.6.5'
 gem 'rails-timeago', '~> 2.0'
 gem 'puma'
-
-# Use unicorn as the app server
 # gem 'unicorn'
-
-# Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 gem 'nprogress-rails'
+gem 'unread'
 
 gem 'devise'
 gem 'best_in_place', '~> 3.0.1'

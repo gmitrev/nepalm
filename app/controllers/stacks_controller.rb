@@ -15,7 +15,7 @@ class StacksController < ApplicationController
   # GET /stacks/1
   # GET /stacks/1.json
   def show
-    @comments = @stack.comments.order("created_at desc").limit(10)
+    @comments, @unread_ids = @stack.latest_comments(current_user)
     @all_comments_count = @stack.comments.count
   end
 

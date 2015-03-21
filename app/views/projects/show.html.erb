@@ -46,7 +46,10 @@
                   </div>
                   <div class="col-xs-4">
                     <p class="small mt">COMMENTS</p>
-                    <p><%= stack.comments.count %></p>
+                    <p>
+                      <%= stack.comments.count %>
+                      <%= unread_count(stack.unread_comments_count(current_user)) %>
+                    </p>
                   </div>
                   <div class="col-xs-4">
                     <p class="small mt">NOTES</p>

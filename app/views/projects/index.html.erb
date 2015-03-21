@@ -31,13 +31,16 @@
                 <div class="row">
                   <div class="col-xs-4">
                     <p class="small mt">TASKS</p>
-                    <p><%= project.completed_tasks %></p>
+                    <p><%= project.completed_tasks(current_user) %></p>
                   </div>
-                  <div class="col-xs-4">
+                  <div class="col-xs-5">
                     <p class="small mt">COMMENTS</p>
-                    <p><%= project.comments_count %></p>
+                    <p>
+                      <%= project.comments_count(current_user) %>
+                      <%= unread_count(project.unread_comments_count(current_user)) %>
+                    </p>
                   </div>
-                  <div class="col-xs-4">
+                  <div class="col-xs-3">
                     <p class="small mt">NOTES</p>
                     <p>0</p>
                   </div>
@@ -45,8 +48,8 @@
                 <div class="row">
                   <div class="col-xs-10 col-xs-offset-1 white-progress">
                     <div class="progress">
-                      <div class="progress-bar"  role="progressbar" aria-valuenow="<%= project.completed_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.completed_percentage %>%">
-                        <span class="sr-only"><%= project.completed_percentage %>% Complete</span>
+                      <div class="progress-bar"  role="progressbar" aria-valuenow="<%= project.completed_percentage(current_user) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.completed_percentage(current_user) %>%">
+                        <span class="sr-only"><%= project.completed_percentage(current_user) %>% Complete</span>
                       </div>
                     </div>
                   </div>

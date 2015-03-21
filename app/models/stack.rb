@@ -46,6 +46,23 @@ class Stack < ActiveRecord::Base
     end
   end
 
+  def unread_comments(user)
+    comments.select { |c| c.unread?(user) }
+  end
+
+  def unread_comments_count(user)
+    unread_comments(user).count
+  end
+
+  def latest_comments(user)
+    coll = comments.order("created_at desc").limit(10)
+    unread = coll.select { |c| c.unread?(user) }
+    # mark all as read
+    unread.each { |c| c.mark_as_read!(for: user) }
+    [coll, unread.map(&:id)]
+
+  end
+
   # Utility method
   def task_list
     task_lists.first

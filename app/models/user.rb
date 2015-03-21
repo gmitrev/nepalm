@@ -20,6 +20,8 @@
 class User < ActiveRecord::Base
   include GlobalID::Identification
 
+  acts_as_reader
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -33,13 +35,6 @@ class User < ActiveRecord::Base
 
   def all_projects
     (stacks.flat_map(&:project) + projects).flatten.uniq
-    # owners = [self, self.organizations.all].flatten.map do |o|
-    #   "(projects.owner_id = #{o.id} AND projects.owner_type = '#{o.class.name}')"
-    # end.join(" OR ")
-    #
-    # projects
-    #
-    # Project.where(owners)
   end
 
   def human
