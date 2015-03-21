@@ -80,7 +80,9 @@ class StacksController < ApplicationController
   def add_member
     respond_to do |format|
       user = User.find_by_email(params[:users])
-      if user && user.stacks << @stack
+      if user && !user.stacks.include?(@stack) && user.stacks << @stack
+        @stack.comments.each { |c| c.mark_as_read!(for: user) }
+
         format.html { redirect_to members_project_stack_path(@project, @stack), notice: 'User successfully added to stack.' }
       else
         format.html { redirect_to members_project_stack_path(@project, @stack), alert: 'User not found.' }

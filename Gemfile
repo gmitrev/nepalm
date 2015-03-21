@@ -19,14 +19,15 @@ gem 'rails-timeago', '~> 2.0'
 gem 'puma'
 # gem 'unicorn'
 # gem 'capistrano-rails', group: :development
-gem 'nprogress-rails'
-gem 'unread'
-
 gem 'devise'
 gem 'best_in_place', '~> 3.0.1'
 gem 'rails_12factor'
 gem 'globalid'
 gem 'gravatarify', '~> 3.0.0'
+gem 'nprogress-rails'
+gem 'unread'
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development do
   gem 'sqlite3'
@@ -35,4 +36,5 @@ group :development do
   gem 'pry-byebug'
   gem 'awesome_print'
   gem 'web-console', '~> 2.0'
+  gem 'letter_opener'
 end

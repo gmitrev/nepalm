@@ -80,4 +80,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { host: 'limitless-beach-9957.herokuapp.com'  }
+
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :user_name => "***REMOVED***",
+    :password  => "***REMOVED***", # Heroku won't work with .env :/
+    :domain    => 'herokuapp.com'
+
+  }
+  config.action_mailer.delivery_method = :smtp
 end

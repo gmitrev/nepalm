@@ -34,6 +34,8 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        # Sendout notifications
+        @comment.notify_all!
         format.html { render @comment }
         format.json { render :show, status: :created, location: @comment }
       else
