@@ -283,7 +283,7 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 }
 
 ul.sidebar-menu {
-    margin-top: 75px;
+    margin-top: 18px;
 }
 
 #sidebar > ul > li > ul.sub {
@@ -419,12 +419,21 @@ ul.sidebar-menu li a.active i {
 
 .wrapper {
     display: inline-block;
-    margin-top: 60px;
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
     padding-top: 0px;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    margin-top: 60px
+  }
+
+  ul.sidebar-menu{
+    margin-top: 75px;
+  }
 }
 
 a.logo {
@@ -2267,4 +2276,18 @@ label {
 
 .submenu {
   margin-top: 20px;
+}
+
+#sidebar {
+  .tidy-menu{
+
+    img {
+      display: inline;
+      margin-top: 15px;
+      margin: 12px 0 0 27px;
+    }
+
+    background: #ffd777;
+    height: 60px;
+  }
 }
