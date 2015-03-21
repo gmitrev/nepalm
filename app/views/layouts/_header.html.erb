@@ -1,13 +1,10 @@
 <header class="header black-bg">
-  <div class="sidebar-toggle-box">
+  <div class="sidebar-toggle-box visible-xs">
     <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
   </div>
   <!--logo start-->
   <%= link_to root_path, class: 'logo' do %>
-    <b>Nepalm</b>
-    <span style='font-size: 0.5em; color: #fff'>
-      alpha
-    </span>
+    <%= image_tag 'logo.png', width: '140px' %>
   <% end %>
   <!--logo end-->
   <!-- <div class="nav notify&#45;row" id="top_menu"> -->

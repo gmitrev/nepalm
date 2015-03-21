@@ -1,10 +1,10 @@
 <div class="comment <%= @unread_ids.include?(comment.id) ? 'unread' : '' rescue "" %>">
   <div class="row">
-    <div class="col-md-1 col-xs-2">
+    <div class="col-md-1 col-xs-3">
       <%= gravatar_tag comment.author.email, size: 59, html: {  class: 'img-circle' } %>
 
     </div>
-    <div class="col-md-11 col-xs-10">
+    <div class="col-md-11 col-xs-9">
       <p>
         <strong><%= comment.author.email %></strong>
         <span class='comment-date'>
