@@ -54,13 +54,15 @@
             <br />
           </ul>
 
-          <%= link_to "#!", id: 'show-completed-tasks', class: 'btn btn-info btn-sm btn-block' do %>
-            <span class='action-show'>
-              Show completed (<%= @stack.task_list.tasks.select(&:completed?).count %>)
-            </span>
-            <span class="action-hide" style='display: none'>
-              Hide completed
-            </span>
+          <% if @stack.task_list.tasks.select(&:completed?).any? %>
+            <%= link_to "#!", id: 'show-completed-tasks', class: 'btn btn-info btn-sm btn-block' do %>
+              <span class='action-show'>
+                Show completed (<%= @stack.task_list.tasks.select(&:completed?).count %>)
+              </span>
+              <span class="action-hide" style='display: none'>
+                Hide completed
+              </span>
+            <% end %>
           <% end %>
 
           <% if @stack.task_list.tasks.none? %>
