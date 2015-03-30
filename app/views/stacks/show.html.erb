@@ -121,7 +121,7 @@
               placeholder: 'Enter comment' %>
 
             <br />
-            <%= f.submit "Post comment", class: "btn btn-success btn-sm" %>
+            <%= f.button "Post comment", class: "btn btn-success btn-sm", data: { disable_with: raw("<i class='fa fa-circle-o-notch fa-spin'></i> Posting...") }%>
           <% end %>
 
         </div>

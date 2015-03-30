@@ -9,13 +9,8 @@
             <%= f.text_field :name, class: 'form-control' %>
           </div>
         </div>
-        <button type="submit" class="btn btn-theme">
-          <% if @project.new_record? %>
-            Create
-          <% else %>
-            Update
-          <% end %>
-        </button>
+
+        <%= render partial: 'shared/button', locals: { f: f } %>
 
         <% if @project.persisted? %>
           <div class='pull-right'>

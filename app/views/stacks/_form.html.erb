@@ -16,7 +16,7 @@
             <%= f.text_area :summary, class: 'form-control' %>
           </div>
         </div>
-        <button type="submit" class="btn btn-theme">Save</button>
+        <%= render partial: 'shared/button', locals: { f: f } %>
         <% if @stack.persisted? %>
           <div class='pull-right'>
             <%= link_to "Delete", [@project, @stack], method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
