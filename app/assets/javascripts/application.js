@@ -25,8 +25,10 @@
 //= require bootstrap/jquery.nicescroll.js
 //= require bootstrap/gritter/js/jquery.gritter.js
 //= require bootstrap/gritter-conf.js
+//= require jquery.autosize
 //
 $(document).on("ready page:load", '', function() {
+  $('textarea').autosize();
   $(".best_in_place").best_in_place();
   $('.tooltips').tooltip();
   $('.popovers').popover();

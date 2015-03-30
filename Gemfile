@@ -26,8 +26,8 @@ gem 'globalid'
 gem 'gravatarify', '~> 3.0.0'
 gem 'nprogress-rails'
 gem 'unread'
-
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'autosize-rails'
 
 group :development do
   gem 'sqlite3'

@@ -10,12 +10,9 @@ $(document
   $(".best_in_place").best_in_place()
 )
 
-$(document).on("ajax:send", ".delete-task", (e)->
-  container = $(this).parents("li.task")
+$(document).on("ajax:send", ".delete-comment", (e)->
+  container = $(this).parents("div.comment")
   container.fadeOut ->
     container.remove()
-
-    if $("li.task").size() == 0
-      $("div#no-tasks-msg").show()
 
 )
