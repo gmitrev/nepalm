@@ -87,21 +87,40 @@
       <div class="panel-heading">
         <div class="pull-left"><h4><i class="fa fa-comments"></i>
             Discussion
-          </h4></div>
+          </h4>
+        </div>
+          <div class='pull-right' style='margin-top: 5px'>
+
+              <%= link_to unsubscribe_project_stack_path(@stack.project, @stack),
+                          class: "btn btn-default btn-sm unsubscribe-button ",
+                          style: current_user.subscribed_to?(@stack) ? '' : 'display: none',
+                          remote: true,
+                          method: :post do %>
+                <i class='fa fa-bell-slash'></i> Unsubscribe
+              <% end %>
+
+              <%= link_to subscribe_project_stack_path(@stack.project, @stack),
+                          class: "btn btn-default btn-sm subscribe-button",
+                          style: current_user.subscribed_to?(@stack) ? 'display: none' : '',
+                          remote: true,
+                          method: :post do %>
+                <i class='fa fa-bell'></i> Subscribe
+              <% end %>
+          </div>
         <br>
       </div>
 
       <div class="panel-body">
         <div class="task-content">
           <div id="comments">
-          <% if @all_comments_count > 10 %>
-            <div class='comments-count'>
-              Showing <%= @comments.count %> of <%= @all_comments_count %>.
-              <%= link_to project_stack_comments_path(@project, @stack) do %>
-                View all
-              <% end %>
-            </div>
-          <% end %>
+            <% if @all_comments_count > 10 %>
+              <div class='comments-count'>
+                Showing <%= @comments.count %> of <%= @all_comments_count %>.
+                <%= link_to project_stack_comments_path(@project, @stack) do %>
+                  View all
+                <% end %>
+              </div>
+            <% end %>
             <% if @comments.none? %>
               <div id='no-comments-msg' class="alert alert-info">
                 <b>No comments yet. </b> Create the first one from the form below.

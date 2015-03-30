@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
       member do
         get :members, :new_member
-        post :add_member
+        post :add_member, :subscribe, :unsubscribe
       end
       resources :task_lists do
         resources :tasks

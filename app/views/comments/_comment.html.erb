@@ -12,7 +12,7 @@
         </span>
 
         <% if comment.author == current_user %>
-          <%= link_to [comment.stack.project, comment.stack, comment], method: :delete, class: 'delete-comment', style: 'float: right', remote: true, data: { confirm: 'Are you sure?' } do %>
+          <%= link_to [comment.stack.project, comment.stack, comment], method: :delete, class: 'delete-comment', style: 'color: #D9534F; float: right', remote: true, data: { confirm: 'Are you sure?' } do %>
             <i class='fa fa-remove'></i>
           <% end %>
         <% end %>

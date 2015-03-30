@@ -1,5 +1,5 @@
 class StacksController < ApplicationController
-  before_action :set_stack, only: [:show, :edit, :update, :destroy, :members, :new_member, :add_member]
+  before_action :set_stack, only: [:show, :edit, :update, :destroy, :members, :new_member, :add_member, :subscribe, :unsubscribe]
   before_action :set_project
 
   before_action only: [:new_member, :add_member] do |m|
@@ -33,7 +33,6 @@ class StacksController < ApplicationController
   def create
     @stack = Stack.new(stack_params.merge({project_id: @project.id}))
     @stack.users << current_user
-    membership = @stack.memberships.where
     @stack.memberships.select { |r| r[:user_id].to_i == current_user.id }.first.role = 'admin' # First user should be admin
 
     respond_to do |format|
@@ -82,6 +81,7 @@ class StacksController < ApplicationController
       user = User.find_by_email(params[:users])
       if user && !user.stacks.include?(@stack) && user.stacks << @stack
         @stack.comments.each { |c| c.mark_as_read!(for: user) }
+        @stack.subscribe!(user)
 
         format.html { redirect_to members_project_stack_path(@project, @stack), notice: 'User successfully added to stack.' }
       else
@@ -89,6 +89,20 @@ class StacksController < ApplicationController
       end
     end
 
+  end
+
+  def subscribe
+    CommentSubscription.find_or_create_by(user: current_user, stack: @stack).subscribe!
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+
+  def unsubscribe
+    CommentSubscription.find_or_create_by(user: current_user, stack: @stack).unsubscribe!
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   private

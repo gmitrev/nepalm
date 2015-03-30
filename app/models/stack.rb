@@ -18,6 +18,9 @@ class Stack < ActiveRecord::Base
   has_many :users, through: :memberships
   has_many :comments, dependent: :destroy
 
+  has_many :subscriptions, class_name: "CommentSubscription"
+  has_many :subscribers, through: :subscriptions
+
   def summary
     if(read_attribute(:summary).present?)
       read_attribute(:summary)
@@ -71,10 +74,17 @@ class Stack < ActiveRecord::Base
   # Create default task list
   after_create do
     task_lists.create(name: "Tasks")
+
+    users.each { |user| subscribe!(user) }
+
   end
 
   def to_s
     name
+  end
+
+  def subscribe!(user)
+    CommentSubscription.find_or_create_by(user: user, stack: self).subscribe!
   end
 
 end

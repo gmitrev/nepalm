@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
   after_save :set_read_by_author
 
   def notify_all!
-    parties = self.stack.users.uniq - [author]
+    parties = (self.stack.users.uniq - [author]).flatten.select { |u| u.subscribed_to?(self.stack) }
 
     parties.each do |party|
       CommentMailer.notify_user(party, self).deliver

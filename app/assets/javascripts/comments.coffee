@@ -14,5 +14,9 @@ $(document).on("ajax:send", ".delete-comment", (e)->
   container = $(this).parents("div.comment")
   container.fadeOut ->
     container.remove()
+)
 
+$(document).on("ajax:send", ".subscribe-button, .unsubscribe-button", (e)->
+  $("a.subscribe-button").toggle()
+  $("a.unsubscribe-button").toggle()
 )

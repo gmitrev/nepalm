@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
 
   has_many :projects, foreign_key: :owner_id
 
+  has_many :subscriptions, class_name: "CommentSubscription"
+  has_many :subscribed_stacks, through: :subscriptions
+
   def all_projects
     (stacks.flat_map(&:project) + projects).flatten.uniq
   end
@@ -43,5 +46,12 @@ class User < ActiveRecord::Base
 
   def membership(stack)
     Membership.find_by(user: self, stack: stack)
+  end
+
+  def subscribed_to?(stack)
+    subscription = subscriptions.where(stack: stack).first
+    subscription.subscribed?
+  rescue StandardError
+    false
   end
 end
