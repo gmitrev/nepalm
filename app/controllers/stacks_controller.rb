@@ -87,7 +87,7 @@ class StacksController < ApplicationController
 
         format.html { redirect_to members_project_stack_path(@project, @stack), notice: 'User successfully added to stack.' }
       else
-        format.html { redirect_to members_project_stack_path(@project, @stack), alert: 'User not found.' }
+        format.html { redirect_to new_member_project_stack_path(@project, @stack), alert: 'User not found.' }
       end
     end
 
