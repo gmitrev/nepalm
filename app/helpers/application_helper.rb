@@ -15,9 +15,16 @@ module ApplicationHelper
     end
   end
 
-  def errors_for(obj)
-    if obj.errors.any?
-
-    end
+  # Button for forms without an object
+  def button(name, loading_text='Saving...')
+    button_tag name, class: 'btn btn-theme', data: { disable_with: raw("<i class='fa fa-circle-o-notch fa-spin'></i> #{loading_text}") }
   end
+
+  # Button for object forms
+  def form_button_for(obj, name = nil)
+    name ||= obj.object.new_record? ? "Create" : "Update"
+
+    obj.button name, class: 'btn btn-theme', data: { disable_with: raw("<i class='fa fa-circle-o-notch fa-spin'></i> Saving...") }
+  end
+
 end
