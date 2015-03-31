@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!
 
-
   # GET /comments
   # GET /comments.json
   def index
@@ -73,23 +72,23 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stack
-      @stack = current_user.stacks.find(params[:stack_id])
-    end
 
-    def set_project
-      @project = @stack.project
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stack
+    @stack = current_user.stacks.find(params[:stack_id])
+  end
 
+  def set_project
+    @project = @stack.project
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:body, :stack_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def comment_params
+    params.require(:comment).permit(:body, :stack_id)
+  end
 end

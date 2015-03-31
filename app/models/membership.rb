@@ -33,6 +33,4 @@ class Membership < ActiveRecord::Base
   #     false
   #   end
   # end
-
-
 end

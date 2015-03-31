@@ -64,13 +64,14 @@ class TaskListsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task_list
-      @task_list = TaskList.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def task_list_params
-      params.require(:task_list).permit(:name, :stack_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task_list
+    @task_list = TaskList.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def task_list_params
+    params.require(:task_list).permit(:name, :stack_id)
+  end
 end

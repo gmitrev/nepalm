@@ -12,7 +12,7 @@
 class Project < ActiveRecord::Base
   has_many :stacks, dependent: :destroy
 
-  belongs_to :owner, class_name: "User"
+  belongs_to :owner, class_name: 'User'
 
   def users
     stacks.flat_map(&:users)

@@ -21,17 +21,15 @@ module Nepalm
     # config.i18n.default_locale = :de
 
     config.to_prepare do
-      Devise::SessionsController.layout "public"
-      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application"   : "public" }
-      Devise::ConfirmationsController.layout "public"
-      Devise::UnlocksController.layout "public"
-      Devise::PasswordsController.layout "public"
+      Devise::SessionsController.layout 'public'
+      Devise::RegistrationsController.layout proc { |_controller| user_signed_in? ? 'application'   : 'public' }
+      Devise::ConfirmationsController.layout 'public'
+      Devise::UnlocksController.layout 'public'
+      Devise::PasswordsController.layout 'public'
     end
 
     config.assets.precompile += %w(application.css application_public.css application_public.js)
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
   end
-
-
 end

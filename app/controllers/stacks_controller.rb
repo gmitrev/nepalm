@@ -2,7 +2,7 @@ class StacksController < ApplicationController
   before_action :set_stack, only: [:show, :edit, :update, :destroy, :members, :new_member, :add_member, :subscribe, :unsubscribe]
   before_action :set_project
 
-  before_action only: [:new_member, :add_member] do |m|
+  before_action only: [:new_member, :add_member] do |_m|
     authorize_user!(@stack)
   end
 
@@ -33,7 +33,7 @@ class StacksController < ApplicationController
   # POST /stacks
   # POST /stacks.json
   def create
-    @stack = Stack.new(stack_params.merge({project_id: @project.id}))
+    @stack = Stack.new(stack_params.merge(project_id: @project.id))
     @stack.users << current_user
     @stack.memberships.select { |r| r[:user_id].to_i == current_user.id }.first.role = 'admin' # First user should be admin
 
@@ -90,7 +90,6 @@ class StacksController < ApplicationController
         format.html { redirect_to new_member_project_stack_path(@project, @stack), alert: 'User not found.' }
       end
     end
-
   end
 
   def subscribe
@@ -108,17 +107,18 @@ class StacksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stack
-      @stack = current_user.stacks.find(params[:id])
-    end
 
-    def set_project
-      @project = current_user.all_projects.select{ |r| r.id == params[:project_id].to_i }.first
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stack
+    @stack = current_user.stacks.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def stack_params
-      params.require(:stack).permit(:name, :summary)
-    end
+  def set_project
+    @project = current_user.all_projects.select { |r| r.id == params[:project_id].to_i }.first
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def stack_params
+    params.require(:stack).permit(:name, :summary)
+  end
 end

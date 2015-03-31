@@ -13,7 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'annotate', '~> 2.6.5'
 gem 'rails-timeago', '~> 2.0'
 gem 'puma'
@@ -26,7 +26,7 @@ gem 'globalid'
 gem 'gravatarify', '~> 3.0.0'
 gem 'nprogress-rails'
 gem 'unread'
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'autosize-rails'
 
 group :development do

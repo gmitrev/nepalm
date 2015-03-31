@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   has_many :projects, foreign_key: :owner_id
 
-  has_many :subscriptions, class_name: "CommentSubscription"
+  has_many :subscriptions, class_name: 'CommentSubscription'
   has_many :subscribed_stacks, through: :subscriptions
 
   def all_projects

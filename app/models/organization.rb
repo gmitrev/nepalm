@@ -25,5 +25,4 @@ class Organization < ActiveRecord::Base
   before_create do
     memberships.first.role = 'admin'
   end
-
 end

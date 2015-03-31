@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
   prepend_before_action :set_membership, only: [:edit, :update, :destroy]
 
-  before_action do |m|
+  before_action do |_m|
     authorize_user!(@stack)
   end
 
@@ -32,15 +32,15 @@ class MembershipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
-      @user = @membership.user
-      @stack = @membership.stack
-    end
 
-    def membership_params
-      params.require(:membership).permit(:role)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership
+    @membership = Membership.find(params[:id])
+    @user = @membership.user
+    @stack = @membership.stack
+  end
 
+  def membership_params
+    params.require(:membership).permit(:role)
+  end
 end
