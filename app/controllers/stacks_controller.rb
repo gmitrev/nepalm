@@ -6,6 +6,8 @@ class StacksController < ApplicationController
     authorize_user!(@stack)
   end
 
+  before_action :authenticate_user!
+
   # GET /stacks
   # GET /stacks.json
   def index

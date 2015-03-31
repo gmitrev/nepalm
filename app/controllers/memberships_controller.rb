@@ -1,11 +1,11 @@
 class MembershipsController < ApplicationController
   prepend_before_action :set_membership, only: [:edit, :update, :destroy]
 
-  before_action :authenticate_user!
-
   before_action do |m|
     authorize_user!(@stack)
   end
+
+  before_action :authenticate_user!
 
   def edit
   end
