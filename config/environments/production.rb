@@ -86,8 +86,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
-    :user_name => "***REMOVED***",
-    :password  => "***REMOVED***", # Heroku won't work with .env :/
+    :user_name => ENV['MANDRILL_USERNAME'],
+    :password  => ENV['MANDRILL_API_KEY'], # Heroku won't work with .env :/
     :domain    => 'herokuapp.com'
 
   }
