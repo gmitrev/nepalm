@@ -8,6 +8,8 @@ class Comment < ActiveRecord::Base
 
   after_save :set_read_by_author
 
+  validates :body, presence: true
+
   def notify_all!
     parties = (stack.users.uniq - [author]).flatten.select { |u| u.subscribed_to?(stack) }
 
