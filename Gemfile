@@ -17,8 +17,6 @@ gem 'font-awesome-rails'
 gem 'annotate', '~> 2.6.5'
 gem 'rails-timeago', '~> 2.0'
 gem 'puma'
-# gem 'unicorn'
-# gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'best_in_place', '~> 3.0.1'
 gem 'rails_12factor'
@@ -28,6 +26,7 @@ gem 'nprogress-rails'
 gem 'unread'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'autosize-rails'
+gem 'rubocop'
 
 group :development do
   gem 'sqlite3'

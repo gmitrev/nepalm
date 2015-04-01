@@ -8,9 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_user!(stack)
-    unless admin_for?(stack)
-      redirect_to :root, notice: 'Not authorized'
-    end
+    redirect_to :root, notice: 'Not authorized' unless admin_for?(stack)
   end
 
   helper_method :admin_for?
