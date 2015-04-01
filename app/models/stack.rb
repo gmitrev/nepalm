@@ -18,7 +18,7 @@ class Stack < ActiveRecord::Base
   has_many :users, through: :memberships
   has_many :comments, dependent: :destroy
 
-  has_many :subscriptions, class_name: 'CommentSubscription'
+  has_many :subscriptions, class_name: 'CommentSubscription', dependent: :destroy
   has_many :subscribers, through: :subscriptions
 
   def summary
