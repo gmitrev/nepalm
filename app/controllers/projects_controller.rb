@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
 
   before_action :authenticate_user!
 
+  before_action :authenticate_owner!, only: [:edit, :update, :destroy]
+
   # GET /projects
   # GET /projects.json
   def index
@@ -80,5 +82,11 @@ class ProjectsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:name)
+  end
+
+  def authenticate_owner!
+    unless @project.owner == current_user
+      redirect_to @project, alert: "You can't do that!"
+    end
   end
 end
