@@ -130,6 +130,9 @@ GEM
     puma (2.8.2)
       rack (>= 1.1, < 2.0)
     rack (1.6.0)
+    rack-google-analytics (1.2.0)
+      actionpack
+      activesupport
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.0)
@@ -245,6 +248,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  rack-google-analytics
   rails (= 4.2.0)
   rails-timeago (~> 2.0)
   rails_12factor

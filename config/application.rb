@@ -20,6 +20,8 @@ module Nepalm
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-61564723-1'
+
     config.to_prepare do
       Devise::SessionsController.layout 'public'
       Devise::RegistrationsController.layout proc { |_controller| user_signed_in? ? 'application'   : 'public' }
