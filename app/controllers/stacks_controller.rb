@@ -39,7 +39,7 @@ class StacksController < ApplicationController
 
     respond_to do |format|
       if @stack.save
-        format.html { redirect_to @project, notice: 'Stack was successfully created.' }
+        format.html { redirect_to project_stack_path(@project, @stack), notice: 'Stack was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -53,7 +53,7 @@ class StacksController < ApplicationController
   def update
     respond_to do |format|
       if @stack.update(stack_params)
-        format.html { redirect_to @project, notice: 'Stack was successfully updated.' }
+        format.html { redirect_to project_stack_path(@project, @stack), notice: 'Stack was successfully updated.' }
         format.json { render :show, status: :ok, location: @stack }
       else
         format.html { render :edit }
