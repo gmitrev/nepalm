@@ -19,4 +19,5 @@
 //= require bootstrap/jquery.backstretch.min
 
 // $.backstretch("/assets/background-80.png", {speed: 500, fade: 750});
-$.backstretch("/assets/background-clouds-70-min.png", {speed: 500, fade: 750});
+// $.backstretch("/assets/background-clouds-70-min.png", {speed: 500, fade: 750});
+$.backstretch("/assets/background-clouds-min.jpg", {speed: 500, fade: 750});
