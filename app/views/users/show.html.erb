@@ -1,0 +1,21 @@
+<% content_for :title do %>
+  <%= link_to "Profile", profile_path %>
+<% end %>
+
+<div class='row mt'>
+
+  <div class='col-xs-12 col-sm-3 col-md-2' style='padding-top: 20px; text-align: center'>
+    <%= gravatar_tag current_user.email, size: 140, html: { class: 'img-circle' } %>
+  </div>
+
+  <div class='col-xs-12 col-sm-5 col-md-10'>
+    <h2>
+      <%= current_user.name %>
+    </h2>
+
+    <h4>
+      <%= current_user.email %>
+    </h4>
+
+  </div>
+</div>
