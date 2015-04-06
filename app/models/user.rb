@@ -54,4 +54,8 @@ class User < ActiveRecord::Base
   rescue StandardError
     false
   end
+
+  def to_s
+    name || email
+  end
 end

@@ -38,7 +38,7 @@
                 </div>
                 <div class='white-summary'>
                   <% stack.users.uniq.take(10).each do |user| %>
-                    <%= gravatar_tag user.email, size: 39, html: {  class: 'img-circle', title: user.email } %>
+                    <%= gravatar_tag user.email, size: 39, html: {  class: 'img-circle', title: user } %>
                     <% end %>
                 </div>
                 <div class="row">

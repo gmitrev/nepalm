@@ -2232,10 +2232,18 @@ label {
 
 /*footer*/
 .site-footer {
-    background: #68dff0;
-    color: #fff;
+    // background: #68dff0;
+    color: #aaa;
     padding: 10px 0;
     margin-left: 210px;
+
+    a {
+      color: #aaa;
+
+      &:hover{
+        color: #58c9f3;
+      }
+    }
 }
 
 

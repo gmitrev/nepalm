@@ -42,7 +42,8 @@
             <a href="#!">
               <%= gravatar_tag current_user.email, size: 59, html: {  class: 'img-circle' } %>
             </a></p>
-            <h5 class="centered"><%= current_user.email %></h5>
+            <h5 class="centered"><%= current_user %></h5>
+            <h5 class="centered">Set name</h5>
 
             <li class="mt">
             </li>
@@ -257,10 +258,12 @@
       <!--footer start-->
       <footer class="site-footer navbar-fixed-bottom hidden-xs">
           <div class="text-center">
-              2014 - Georgi Mitrev
-              <!-- <a href="#!" class="go&#45;top"> -->
-              <!--     <i class="fa fa&#45;angle&#45;up"></i> -->
-              <!-- </a> -->
+              <a href='http://mitrev.net' target='_blank'>
+                2015 - Georgi Mitrev
+              </a>
+              <a href="#!" class="go-top">
+                <i class="fa fa-angle-up"></i>
+              </a>
           </div>
       </footer>
       <!--footer end-->
