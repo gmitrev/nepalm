@@ -28,6 +28,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'autosize-rails'
 gem 'rubocop'
 gem 'rack-google-analytics'
+gem 'skylight'
 
 group :development do
   gem 'sqlite3'
