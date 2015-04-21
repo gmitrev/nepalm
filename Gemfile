@@ -29,6 +29,7 @@ gem 'autosize-rails'
 gem 'rubocop'
 gem 'rack-google-analytics'
 gem 'skylight'
+gem 'aws-sdk', '~> 2'
 
 group :development do
   gem 'sqlite3'
