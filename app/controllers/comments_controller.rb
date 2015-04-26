@@ -58,7 +58,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to project_stack_path(@comment.stack.project, @comment.stack), notice: 'Files uploaded successfully.' }
         format.json { render :show, status: :ok, location: @comment }
       else
-        format.html { redirect_to project_stack_path(@comment.stack.project, @comment.stack), alert: "Unsupported file type!" }
+        format.html { redirect_to project_stack_path(@comment.stack.project, @comment.stack), alert: "Unsupported file type or file size too big (max 10MB per file)!" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

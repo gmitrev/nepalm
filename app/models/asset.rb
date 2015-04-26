@@ -11,7 +11,7 @@ class Asset < ActiveRecord::Base
   has_many :attached_to, through: :attachments
   # validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment_content_type :file, content_type: %w(image/jpeg image/jpg image/png image/gif application/pdf application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document text/plain application/x-download application/zip application/octet-stream application/x-rar-compressed)
-  # do_not_validate_attachment_file_type :file
+  validates_attachment_size :file, { in: 0..10.megabytes  }
 
   def s3_credentials
     {
@@ -32,4 +32,5 @@ class Asset < ActiveRecord::Base
       {}
     end
   end
+
 end
