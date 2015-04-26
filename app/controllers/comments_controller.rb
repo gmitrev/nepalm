@@ -50,11 +50,15 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    attached_files = params['comment']['attached_files']
+    @comment.add_files(attached_files) if attached_files
+
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to project_stack_path(@comment.stack.project, @comment.stack) }
         format.json { render :show, status: :ok, location: @comment }
       else
+        binding.pry
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end

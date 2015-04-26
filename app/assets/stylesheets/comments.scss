@@ -23,4 +23,30 @@
   .comment.unread{
     background: #FDF5E6;
   }
+
+  .files {
+    border-top: 1px dashed #bbb;
+    border-bottom: 1px dashed #bbb;
+    padding: 0px 0;
+    margin-bottom: 15px;
+
+    .file {
+      padding: 10px 0;
+
+      &:not(:last-child){
+        border-bottom: 1px solid #eee;
+
+      }
+
+      &:hover {
+        background: #f7f7f7;
+      }
+
+    }
+
+    .upload-button {
+      margin-top: 10px;
+      float: right;
+    }
+  }
 }

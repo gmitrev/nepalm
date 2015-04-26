@@ -4,6 +4,9 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :stack
 
+  has_many :attachments, as: :parent
+  has_many :attached_files, through: :attachments, source: :asset
+
   alias_method :author, :user
 
   after_save :set_read_by_author
@@ -15,6 +18,12 @@ class Comment < ActiveRecord::Base
 
     parties.each do |party|
       CommentMailer.notify_user(party, self).deliver
+    end
+  end
+
+  def add_files(files)
+    files.each do |file|
+      attached_files.create(file: file)
     end
   end
 

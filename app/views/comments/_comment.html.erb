@@ -18,7 +18,56 @@
         <% end %>
       </p>
       <%= simple_format(comment.body) %>
+
+      <% if comment.attached_files.any? %>
+        <div class='col-md-12 col-xs-12 files'>
+
+          <% comment.attached_files.each do |c| %>
+            <div class='file'>
+              <%= link_to c.file.url, target: '_blank' do %>
+                <%= image_tag c.file.url(:thumb) %>
+              <% end %>
+              <%= c.file_file_name %>
+              <%= link_to c.file.url, target: '_blank' do %>
+                <i class="fa fa-download"></i> Download
+              <% end %>
+            </div>
+          <% end %>
+
+        </div>
+      <% end %>
+
+      <% if comment.author == current_user %>
+        <%= link_to "#!", class: 'upload-button', data: { toggle: 'modal',  target:   "#comment_#{comment.id}_modal"} do %>
+          <i class="fa fa-upload"></i> Upload files
+        <% end %>
+      <% end %>
+
+
     </div>
 
   </div>
+</div>
+
+<div class="modal fade" id="comment_<%= comment.id %>_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <%= form_for([comment.stack.project, comment.stack, comment], multipart: true) do |f| %>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Select files to upload</h4>
+        </div>
+        <div class="modal-body">
+          <div class="field">
+            <%= f.label :attached_files %>
+            <%= f.file_field :attached_files, multiple: true %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Upload", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
