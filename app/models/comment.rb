@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :stack
 
-  has_many :attachments, as: :parent
+  has_many :attachments, as: :parent, dependent: :destroy
   has_many :attached_files, through: :attachments, source: :asset
 
   alias_method :author, :user

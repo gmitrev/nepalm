@@ -55,11 +55,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to project_stack_path(@comment.stack.project, @comment.stack) }
+        format.html { redirect_to project_stack_path(@comment.stack.project, @comment.stack), notice: 'Files uploaded successfully.' }
         format.json { render :show, status: :ok, location: @comment }
       else
-        binding.pry
-        format.html { render :edit }
+        format.html { redirect_to project_stack_path(@comment.stack.project, @comment.stack), alert: "Unsupported file type!" }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
