@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :memberships
-  has_many :stacks, through: :memberships
+  has_many :stacks, -> { order("created_at ASC") }, through: :memberships
   has_many :comments
 
   has_many :projects, foreign_key: :owner_id

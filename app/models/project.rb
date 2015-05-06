@@ -10,7 +10,7 @@
 #
 
 class Project < ActiveRecord::Base
-  has_many :stacks, dependent: :destroy
+  has_many :stacks, -> { order("created_at DESC") }, dependent: :destroy
 
   belongs_to :owner, class_name: 'User'
 
