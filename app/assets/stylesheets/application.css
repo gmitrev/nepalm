@@ -15,8 +15,9 @@
  *= require 'bootstrap/style-responsive'
  *= require font-awesome
  *= require 'bootstrap/lineicons/style'
- *= require 'comments'
- *= require 'tasks'
+ *= require comments
+ *= require tasks
+ *= require users
  *= require nprogress
  *= require nprogress-bootstrap
 

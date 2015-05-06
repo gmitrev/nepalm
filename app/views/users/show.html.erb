@@ -2,15 +2,23 @@
   <%= link_to "Profile", profile_path %>
 <% end %>
 
-<div class='row mt'>
+<div class='row mt user-profile'>
 
-  <div class='col-xs-12 col-sm-3 col-md-2' style='padding-top: 20px; text-align: center'>
-    <%= gravatar_tag current_user.email, size: 140, html: { class: 'img-circle' } %>
+  <div class='col-xs-4 col-sm-3 col-md-2' style='padding-top: 20px; text-align: center'>
+    <%= gravatar_tag current_user.email, size: 100, html: { class: 'img-circle' } %>
+    <br />
+    <a href="https://en.gravatar.com/" target='_blank'>Change avatar</a>
   </div>
 
-  <div class='col-xs-12 col-sm-5 col-md-10'>
+  <div class='col-xs-8 col-sm-5 col-md-10'>
     <h2>
-      <%= current_user.name %>
+      <%= best_in_place current_user, :name, url: update_profile_path, as: :input, inner_class: "form-control", activator: "#edit-name-activator", place_holder: "&nbsp;", class: 'form-inline edit-name-form' %>
+
+      <% if current_user.name %>
+        <a href="#!" class='btn btn-default btn-small edit-name' id='edit-name-activator'>edit</a>
+      <% else %>
+        <a href="#!" id='edit-name-activator'>Click to enter your name</a>
+      <% end %>
     </h2>
 
     <h4>

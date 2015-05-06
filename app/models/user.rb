@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   has_many :stacks, -> { order("created_at ASC") }, through: :memberships
   has_many :comments
 
-  has_many :projects, foreign_key: :owner_id
+  has_many :projects, -> { order("created_at ASC") }, foreign_key: :owner_id
 
   has_many :subscriptions, class_name: 'CommentSubscription'
   has_many :subscribed_stacks, through: :subscriptions

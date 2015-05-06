@@ -20,6 +20,7 @@
 //= require comments
 //= require stacks
 //= require tasks
+//= require users
 //= require bootstrap/bootstrap.min
 //= require bootstrap/jquery.scrollTo.min
 //= require bootstrap/jquery.nicescroll.js

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   get :profile, to: 'users#show'
+  put :update_profile, to: 'users#update'
 
   devise_for :users
   root 'projects#index'

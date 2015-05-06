@@ -45,6 +45,12 @@
             </p>
             <h5 class="centered"><%= current_user %></h5>
 
+            <% unless current_user.name %>
+              <%= link_to profile_path do %>
+                <h5 class='centered'><i class="fa fa-exclamation-circle"></i> Set name</h5>
+              <% end %>
+            <% end %>
+
             <li class="mt">
             </li>
 
