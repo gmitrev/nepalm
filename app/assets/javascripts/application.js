@@ -23,7 +23,6 @@
 //= require users
 //= require bootstrap/bootstrap.min
 //= require bootstrap/jquery.scrollTo.min
-//= require bootstrap/jquery.nicescroll.js
 //= require bootstrap/gritter/js/jquery.gritter.js
 //= require bootstrap/gritter-conf.js
 //= require jquery.autosize
@@ -49,9 +48,9 @@ $(document).on("ready page:load", '', function() {
   $(window).on('load', responsiveView);
   $(window).on('resize', responsiveView);
 
-        $("#sidebar").niceScroll({styler:"fb",cursorcolor:"#4ECDC4", cursorwidth: '3', cursorborderradius: '10px', background: '#404040', spacebarenabled:false, cursorborder: ''});
+        // $("#sidebar").niceScroll({styler:"fb",cursorcolor:"#4ECDC4", cursorwidth: '3', cursorborderradius: '10px', background: '#404040', spacebarenabled:false, cursorborder: ''});
 
-        $("html").niceScroll({styler:"fb",cursorcolor:"#4ECDC4", cursorwidth: '6', cursorborderradius: '10px', background: '#404040', spacebarenabled:false,  cursorborder: '', zindex: '1000'});
+        // $("html").niceScroll({styler:"fb",cursorcolor:"#4ECDC4", cursorwidth: '6', cursorborderradius: '10px', background: '#404040', spacebarenabled:false,  cursorborder: '', zindex: '1000'});
 });
 
 $(document).on('click', '#sidebar .sub-menu > a', function () {
