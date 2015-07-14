@@ -6,7 +6,11 @@ Rails.application.routes.draw do
       get :test
     end
     resources :stacks do
-      resources :comments
+      resources :comments do
+        member do
+          post :add_files
+        end
+      end
 
       member do
         get :members, :new_member

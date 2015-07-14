@@ -6,7 +6,7 @@ module ApplicationHelper
     when 'error'
       'alert-danger' # Red
     when 'alert'
-      'alert-warning' # Yellow
+      'alert-danger' # Red
     when 'notice'
       'alert-info' # Blue
     else

@@ -57,4 +57,26 @@ class Project < ActiveRecord::Base
   def to_s
     name
   end
+
+  def total_file_size_mb
+    total_file_size.to_f / 1.megabyte
+  end
+
+
+  def disk_usage_limit
+    100.megabytes
+  end
+
+  def disk_usage_percentage
+    total_file_size.to_f / disk_usage_limit.to_f * 100
+  end
+
+  def free_disk_space
+    disk_usage_limit - total_file_size
+  end
+
+  def enough_disk_space_for?(required_disk_space)
+    free_disk_space > required_disk_space
+  end
+
 end

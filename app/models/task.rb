@@ -8,6 +8,7 @@
 #  completed    :boolean
 #  created_at   :datetime
 #  updated_at   :datetime
+#  completed_at :datetime
 #
 
 class Task < ActiveRecord::Base

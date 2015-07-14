@@ -50,7 +50,7 @@
 </div>
 
 <div class="modal fade" id="comment_<%= comment.id %>_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_for([comment.stack.project, comment.stack, comment], multipart: true) do |f| %>
+  <%= form_for(comment, url: add_files_project_stack_comment_path(comment.stack.project, comment.stack, comment), multipart: true, method: :post) do |f| %>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

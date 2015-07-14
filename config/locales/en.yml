@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  errors:
+    not_enough_disk_space: "You have reached your disk space limit. %{href}"
+
