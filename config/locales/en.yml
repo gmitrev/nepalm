@@ -23,4 +23,3 @@ en:
 
   errors:
     not_enough_disk_space: "You have reached your disk space limit. %{href}"
-

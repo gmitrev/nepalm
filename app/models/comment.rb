@@ -41,12 +41,9 @@ class Comment < ActiveRecord::Base
 
     if enough_disk_space_for?(required_disk_space)
       additional_space = files.map do |file|
-        if false
-          file = attached_files.create(file: file)
+        file = attached_files.create(file: file)
 
-          file.persisted? ? file.file_file_size : 0
-        else
-        end
+        file.persisted? ? file.file_file_size : 0
       end.compact.reduce(:+) || 0
 
       project.update_column(:total_file_size, project.total_file_size + additional_space)

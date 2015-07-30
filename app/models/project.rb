@@ -59,7 +59,11 @@ class Project < ActiveRecord::Base
   end
 
   def total_file_size_mb
-    total_file_size.to_f / 1.megabyte
+    if total_file_size.to_f > 0
+      total_file_size.to_f / 1.megabyte
+    else
+      0
+    end
   end
 
 
