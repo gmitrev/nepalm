@@ -72,11 +72,12 @@ class ProjectsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = current_user.all_projects.select { |r| r.id == params[:id].to_i }.first
+    @project = current_user.all_projects.detect { |r| r.id == params[:id].to_i }
   end
 
   def set_stacks
-    @stacks = current_user.stacks.where(project: @project)
+    @stacks          = current_user.stacks.active.where(project: @project)
+    @archived_stacks = current_user.stacks.archived.where(project: @project)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -85,8 +86,8 @@ class ProjectsController < ApplicationController
   end
 
   def authenticate_owner!
-    unless @project.owner == current_user
-      redirect_to @project, alert: "You can't do that!"
-    end
+    return unless @project.owner == current_user
+
+    redirect_to @project, alert: "You can't do that!"
   end
 end

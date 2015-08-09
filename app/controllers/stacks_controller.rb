@@ -1,8 +1,10 @@
 class StacksController < ApplicationController
-  before_action :set_stack, only: [:show, :edit, :update, :destroy, :members, :new_member, :add_member, :subscribe, :unsubscribe]
+  before_action :set_stack, only: [:show, :edit, :update, :destroy, :members,
+                                   :new_member, :add_member, :subscribe,
+                                   :unsubscribe, :archive]
   before_action :set_project
 
-  before_action only: [:new_member, :add_member] do |_m|
+  before_action only: [:new_member, :add_member, :archive] do |_m|
     authorize_user!(@stack)
   end
 
@@ -35,7 +37,7 @@ class StacksController < ApplicationController
   def create
     @stack = Stack.new(stack_params.merge(project_id: @project.id))
     @stack.users << current_user
-    @stack.memberships.select { |r| r[:user_id].to_i == current_user.id }.first.role = 'admin' # First user should be admin
+    @stack.memberships.detect { |r| r[:user_id].to_i == current_user.id }.role = 'admin' # First user should be admin
 
     respond_to do |format|
       if @stack.save
@@ -106,6 +108,14 @@ class StacksController < ApplicationController
     end
   end
 
+  def archive
+    @stack.archive!
+    respond_to do |format|
+      format.html { redirect_to @project, notice: 'Stack was successfully archived.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -114,7 +124,7 @@ class StacksController < ApplicationController
   end
 
   def set_project
-    @project = current_user.all_projects.select { |r| r.id == params[:project_id].to_i }.first
+    @project = current_user.all_projects.find { |r| r.id == params[:project_id].to_i }
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
