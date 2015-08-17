@@ -12,6 +12,8 @@
 #
 
 class Stack < ActiveRecord::Base
+  include Archivable
+
   belongs_to :project
   has_many :task_lists, dependent: :destroy
 
@@ -21,9 +23,6 @@ class Stack < ActiveRecord::Base
 
   has_many :subscriptions, class_name: 'CommentSubscription', dependent: :destroy
   has_many :subscribers, through: :subscriptions
-
-  scope :active,   -> { where(archived: false) }
-  scope :archived, -> { where(archived: true) }
 
   def summary
     if self[:summary].present?
@@ -87,9 +86,5 @@ class Stack < ActiveRecord::Base
 
   def subscribe!(user)
     CommentSubscription.find_or_create_by(user: user, stack: self).subscribe!
-  end
-
-  def archive!
-    update_column(:archived, true)
   end
 end

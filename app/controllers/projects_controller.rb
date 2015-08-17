@@ -1,16 +1,17 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :archive]
 
   before_action :set_stacks, only: [:show]
 
   before_action :authenticate_user!
 
-  before_action :authenticate_owner!, only: [:edit, :update, :destroy]
+  before_action :authenticate_owner!, only: [:edit, :update, :destroy, :archive]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current_user.all_projects
+    @active_projects = current_user.active_projects
+    @archived_projects = current_user.archived_projects
   end
 
   # GET /projects/1
@@ -68,6 +69,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def archive
+    @project.archive!
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Project was successfully archived.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -86,7 +95,7 @@ class ProjectsController < ApplicationController
   end
 
   def authenticate_owner!
-    return unless @project.owner == current_user
+    return if @project.owner == current_user
 
     redirect_to @project, alert: "You can't do that!"
   end

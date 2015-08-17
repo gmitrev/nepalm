@@ -10,7 +10,9 @@
 #
 
 class Project < ActiveRecord::Base
-  has_many :stacks, -> { order("created_at DESC") }, dependent: :destroy
+  include Archivable
+
+  has_many :stacks, -> { order('created_at DESC') }, dependent: :destroy
 
   belongs_to :owner, class_name: 'User'
 
@@ -66,7 +68,6 @@ class Project < ActiveRecord::Base
     end
   end
 
-
   def disk_usage_limit
     100.megabytes
   end
@@ -82,5 +83,4 @@ class Project < ActiveRecord::Base
   def enough_disk_space_for?(required_disk_space)
     free_disk_space > required_disk_space
   end
-
 end

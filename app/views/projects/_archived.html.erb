@@ -1,0 +1,31 @@
+<% content_for :title do %>
+  Archived projects
+<% end %>
+
+<div class="row mt">
+  <div class="col-lg-12">
+
+    <% if @archived_projects.any?  %>
+      <% @archived_projects.in_groups_of(4).each do |projects| %>
+
+        <%= render partial: 'projects/projects_row', locals: { projects: projects } %>
+
+      <% end %>
+    <% else %>
+      <div class="alert alert-info">
+        <b>You have no Projects!</b> Create one from the button below to start.
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class='col-lg-12'>
+    <%= link_to new_project_path, class: 'btn btn-lg btn-theme03' do %>
+      Create project
+    <% end %>
+
+    <%= link_to projects_path, class: 'btn btn-lg btn-text' do %>
+      Show active projects
+    <% end %>
+  </div>
+</div>

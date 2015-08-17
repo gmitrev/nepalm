@@ -41,6 +41,14 @@ class User < ActiveRecord::Base
     (stacks.flat_map(&:project) + projects).flatten.uniq
   end
 
+  def active_projects
+    all_projects.reject(&:archived)
+  end
+
+  def archived_projects
+    all_projects.select(&:archived)
+  end
+
   def human
     email
   end

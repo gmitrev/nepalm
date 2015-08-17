@@ -54,7 +54,7 @@
             <li class="mt">
             </li>
 
-            <% current_user.all_projects.each do |project| %>
+            <% current_user.active_projects.each do |project| %>
 
               <li class="sub-menu" data-no-turbolink>
                 <%= link_to project_path(project) do %>

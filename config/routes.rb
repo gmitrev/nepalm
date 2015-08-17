@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   resources :memberships
 
   resources :projects do
-    collection do
-      get :test
+    member do
+      post :archive
     end
+
     resources :stacks do
       resources :comments do
         member do
