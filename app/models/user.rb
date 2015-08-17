@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   has_many :subscribed_stacks, through: :subscriptions
 
   def all_projects
-    (stacks.flat_map(&:project) + projects).flatten.uniq
+    (stacks.flat_map(&:project) + projects).flatten.uniq.sort_by(&:created_at)
   end
 
   def active_projects

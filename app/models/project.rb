@@ -16,6 +16,8 @@ class Project < ActiveRecord::Base
 
   belongs_to :owner, class_name: 'User'
 
+  after_create :create_default_stacks
+
   def users
     stacks.flat_map(&:users)
   end
@@ -82,5 +84,20 @@ class Project < ActiveRecord::Base
 
   def enough_disk_space_for?(required_disk_space)
     free_disk_space > required_disk_space
+  end
+
+  private
+
+  def create_default_stacks
+    stack_params = {
+      name: 'Todo',
+      summary: 'Default todo stack',
+      project: self
+    }
+
+    stack = Stack.new(stack_params)
+    stack.users << owner
+    stack.memberships.detect { |s| s.user == owner }.role = 'admin'
+    stack.save
   end
 end
