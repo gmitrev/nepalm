@@ -14,7 +14,11 @@
 
         <% if @project.persisted? %>
           <div class='pull-right'>
-            <%= link_to "Archive", archive_project_path(@project), method: :post, class: "btn btn-warning", data: { confirm: "Are you sure?" } %>
+
+            <% if @project.active? %>
+              <%= link_to "Archive", archive_project_path(@project), method: :post, class: "btn btn-warning", data: { confirm: "Are you sure?" } %>
+            <% end %>
+
             <%= link_to "Delete", @project, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
           </div>
         <% end %>

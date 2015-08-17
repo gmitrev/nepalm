@@ -11,4 +11,9 @@ module Archivable
   def archive!
     update_column(:archived, true)
   end
+
+  def active?
+    !archived?
+  end
+
 end
