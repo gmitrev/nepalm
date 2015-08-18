@@ -13,14 +13,20 @@
         <%= render partial: 'shared/button', locals: { f: f } %>
 
         <% if @project.persisted? %>
+
           <div class='pull-right'>
 
-            <% if @project.active? %>
-              <%= link_to "Archive", archive_project_path(@project), method: :post, class: "btn btn-warning", data: { confirm: "Are you sure?" } %>
+            <%= link_to archive_project_path(@project), method: :post,
+                          class: 'btn btn-warning',
+                          data: { confirm: "Are you sure?" } do %>
+              <%= @project.active? ? 'Archive' : 'Unarchive' %>
             <% end %>
 
-            <%= link_to "Delete", @project, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+            <%= link_to 'Delete', @project, method: :delete,
+                          class: 'btn btn-danger',
+                          data: { confirm: 'Are you sure?' } %>
           </div>
+
         <% end %>
 
       <% end %>

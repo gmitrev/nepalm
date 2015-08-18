@@ -8,12 +8,11 @@ module Archivable
     scope :archived, -> { where(archived: true) }
   end
 
-  def archive!
-    update_column(:archived, true)
+  def toggle_archive!
+    update_column(:archived, !archived?)
   end
 
   def active?
     !archived?
   end
-
 end

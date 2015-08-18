@@ -109,7 +109,8 @@ class StacksController < ApplicationController
   end
 
   def archive
-    @stack.archive!
+    @stack.toggle_archive!
+
     respond_to do |format|
       format.html { redirect_to @project, notice: 'Stack was successfully archived.' }
       format.json { head :no_content }
