@@ -87,4 +87,8 @@ class Stack < ActiveRecord::Base
   def subscribe!(user)
     CommentSubscription.find_or_create_by(user: user, stack: self).subscribe!
   end
+
+  def files_count
+    comments.includes(:attached_files).flat_map(&:attached_files).count
+  end
 end

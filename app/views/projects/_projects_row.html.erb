@@ -23,16 +23,16 @@
             <p class="small mt">TASKS</p>
             <p><%= project.completed_tasks(current_user) %></p>
           </div>
-          <div class="col-xs-5">
+          <div class="col-xs-4">
             <p class="small mt">COMMENTS</p>
             <p>
               <%= project.comments_count(current_user) %>
               <%= unread_count(project.unread_comments_count(current_user)) %>
             </p>
           </div>
-          <div class="col-xs-3">
-            <p class="small mt">NOTES</p>
-            <p>0</p>
+          <div class="col-xs-4">
+            <p class="small mt">FILES</p>
+            <p><%= project.files_count(current_user) %></p>
           </div>
         </div>
         <div class="row">

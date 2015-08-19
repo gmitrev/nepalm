@@ -23,19 +23,15 @@ class Project < ActiveRecord::Base
   end
 
   def completed_tasks(user)
-    user_stacks = stacks.select { |s| s.users.include?(user) }
-
-    completed = user_stacks.flat_map(&:completed_tasks_count).reduce(:+) || 0
-    total = user_stacks.flat_map(&:total_tasks_count).reduce(:+) || 0
+    completed = user_stacks(user).flat_map(&:completed_tasks_count).reduce(:+) || 0
+    total = user_stacks(user).flat_map(&:total_tasks_count).reduce(:+) || 0
 
     "#{completed}/#{total}"
   end
 
   def completed_percentage(user)
-    user_stacks = stacks.select { |s| s.users.include?(user) }
-
-    completed = user_stacks.flat_map(&:completed_tasks_count).reduce(:+) || 0
-    total = user_stacks.flat_map(&:total_tasks_count).reduce(:+) || 0
+    completed = user_stacks(user).flat_map(&:completed_tasks_count).reduce(:+) || 0
+    total = user_stacks(user).flat_map(&:total_tasks_count).reduce(:+) || 0
 
     if total.zero? || completed.zero?
       0
@@ -45,17 +41,19 @@ class Project < ActiveRecord::Base
   end
 
   def comments_count(user)
-    user_stacks = stacks.select { |s| s.users.include?(user) }
-    user_stacks.flat_map(&:comments).count
+    user_stacks(user).flat_map(&:comments).count
   end
 
   def unread_comments(user)
-    user_stacks = stacks.select { |s| s.users.include?(user) }
-    user_stacks.flat_map(&:comments).select { |c| c.unread?(user) }
+    user_stacks(user).flat_map(&:comments).select { |c| c.unread?(user) }
   end
 
   def unread_comments_count(user)
     unread_comments(user).count
+  end
+
+  def files_count(user)
+    user_stacks(user).flat_map(&:files_count).reduce(:+) || 0
   end
 
   def to_s
@@ -99,5 +97,9 @@ class Project < ActiveRecord::Base
     stack.users << owner
     stack.memberships.detect { |s| s.user == owner }.role = 'admin'
     stack.save
+  end
+
+  def user_stacks(user)
+    stacks.select { |s| s.users.include?(user) }
   end
 end
