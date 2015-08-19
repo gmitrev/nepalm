@@ -20,17 +20,17 @@ module Nepalm
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-61564723-1'
+    config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-61564723-1'
 
     config.to_prepare do
       Devise::SessionsController.layout 'public'
-      Devise::RegistrationsController.layout proc { |_controller| user_signed_in? ? 'application'   : 'public' }
+      Devise::RegistrationsController.layout proc { |_controller| user_signed_in? ? 'application' : 'public' }
       Devise::ConfirmationsController.layout 'public'
       Devise::UnlocksController.layout 'public'
       Devise::PasswordsController.layout 'public'
     end
 
-    config.assets.precompile += %w(application.css application_public.css application_public.js)
+    config.assets.precompile += %w(application.css application_public.css application_public.js application_landing.css)
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
   end

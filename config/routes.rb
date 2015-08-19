@@ -34,5 +34,5 @@ Rails.application.routes.draw do
   put :update_profile, to: 'users#update'
 
   devise_for :users
-  root 'projects#index'
+  root 'welcome#index'
 end
