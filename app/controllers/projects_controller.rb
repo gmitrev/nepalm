@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projets_path, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,7 +73,7 @@ class ProjectsController < ApplicationController
     @project.toggle_archive!
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Project was successfully archived.' }
+      format.html { redirect_to projets_path, notice: 'Project was successfully archived.' }
       format.json { head :no_content }
     end
   end
