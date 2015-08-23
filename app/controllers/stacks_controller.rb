@@ -83,10 +83,7 @@ class StacksController < ApplicationController
   def add_member
     respond_to do |format|
       user = User.find_by_email(params[:users])
-      if user && !user.stacks.include?(@stack) && user.stacks << @stack
-        @stack.comments.each { |c| c.mark_as_read!(for: user) }
-        @stack.subscribe!(user)
-
+      if user && !user.stacks.include?(@stack) && user.stacks << @stack && @stack.add_user(user)
         format.html { redirect_to members_project_stack_path(@project, @stack), notice: 'User successfully added to stack.' }
       else
         format.html { redirect_to new_member_project_stack_path(@project, @stack), alert: 'User not found.' }
@@ -125,7 +122,7 @@ class StacksController < ApplicationController
   end
 
   def set_project
-    @project = current_user.all_projects.find { |r| r.id == params[:project_id].to_i }
+    @project = current_user.projects.find(params[:project_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

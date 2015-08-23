@@ -2,11 +2,13 @@
 #
 # Table name: projects
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  owner_id   :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer          not null, primary key
+#  name            :string
+#  owner_id        :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#  total_file_size :integer          default("0")
+#  archived        :boolean          default("false")
 #
 
 class Project < ActiveRecord::Base
@@ -16,11 +18,10 @@ class Project < ActiveRecord::Base
 
   belongs_to :owner, class_name: 'User'
 
-  after_create :create_default_stacks
+  has_many :project_users
+  has_many :users, through: :project_users
 
-  def users
-    stacks.flat_map(&:users)
-  end
+  after_create :create_default_stacks, :attach_owner
 
   def completed_tasks(user)
     completed = user_stacks(user).flat_map(&:completed_tasks_count).reduce(:+) || 0
@@ -84,6 +85,10 @@ class Project < ActiveRecord::Base
     free_disk_space > required_disk_space
   end
 
+  def add_user(user)
+    users << user unless users.include?(user)
+  end
+
   private
 
   def create_default_stacks
@@ -97,6 +102,10 @@ class Project < ActiveRecord::Base
     stack.users << owner
     stack.memberships.detect { |s| s.user == owner }.role = 'admin'
     stack.save
+  end
+
+  def attach_owner
+    add_user(owner)
   end
 
   def user_stacks(user)

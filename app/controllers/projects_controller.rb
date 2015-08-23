@@ -82,7 +82,7 @@ class ProjectsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = current_user.all_projects.detect { |r| r.id == params[:id].to_i }
+    @project = current_user.projects.find(params[:id])
   end
 
   def set_stacks

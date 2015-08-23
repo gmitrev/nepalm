@@ -29,24 +29,23 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :memberships
-  has_many :stacks, -> { order("created_at ASC") }, through: :memberships
+  has_many :stacks, -> { order('created_at ASC') }, through: :memberships
   has_many :comments
 
-  has_many :projects, -> { order("created_at ASC") }, foreign_key: :owner_id
+  has_many :owned_projects, -> { order('created_at ASC') }, foreign_key: :owner_id, class_name: 'Project'
+
+  has_many :project_users
+  has_many :projects, through: :project_users
 
   has_many :subscriptions, class_name: 'CommentSubscription'
   has_many :subscribed_stacks, through: :subscriptions
 
-  def all_projects
-    (stacks.flat_map(&:project) + projects).flatten.uniq.sort_by(&:created_at)
-  end
-
   def active_projects
-    all_projects.reject(&:archived)
+    projects.where(archived: false)
   end
 
   def archived_projects
-    all_projects.select(&:archived)
+    projects.where(archived: true)
   end
 
   def human

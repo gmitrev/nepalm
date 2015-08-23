@@ -91,4 +91,12 @@ class Stack < ActiveRecord::Base
   def files_count
     comments.includes(:attached_files).flat_map(&:attached_files).count
   end
+
+  # Add a new user to the stack. Mark all comments as read, subscribe the
+  # user to the discussion and add them to the project's user pool
+  def add_user(user)
+    comments.each { |c| c.mark_as_read!(for: user) }
+    subscribe!(user)
+    project.add_user(user)
+  end
 end
