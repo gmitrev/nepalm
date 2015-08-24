@@ -18,8 +18,15 @@
  *= require comments
  *= require tasks
  *= require users
+ *= require projects
  *= require nprogress
  *= require nprogress-bootstrap
 
  *= require_self
  */
+
+
+.starred-banner {
+  text-indent: 5px;
+  font-size: 0.9em;
+}

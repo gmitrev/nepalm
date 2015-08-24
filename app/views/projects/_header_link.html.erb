@@ -1,0 +1,9 @@
+<%= link_to star_project_path(@project), method: :post do %>
+  <% if @project.starred_by?(current_user) %>
+    <i class='fa fa-star starred'></i>
+  <% else %>
+    <i class='fa fa-star-o not-starred'></i>
+  <% end %>
+<% end %>
+
+<%= link_to @project, @project %>

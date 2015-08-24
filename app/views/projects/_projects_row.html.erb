@@ -7,6 +7,9 @@
         <div class="white-header">
           <%= link_to project do %>
             <h5>
+              <% if project.starred_by?(current_user) %>
+                <i class='fa fa-star starred'></i>
+              <% end %>
               <%= project.name %>
               &nbsp;
               <i class="fa fa-angle-double-right"></i>

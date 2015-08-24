@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :archive]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :archive, :star]
 
   before_action :set_stacks, only: [:show]
 
@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projets_path, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_path, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,7 +73,16 @@ class ProjectsController < ApplicationController
     @project.toggle_archive!
 
     respond_to do |format|
-      format.html { redirect_to projets_path, notice: 'Project was successfully archived.' }
+      format.html { redirect_to projects_path, notice: 'Project was successfully archived.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def star
+    @project.star_for!(current_user)
+
+    respond_to do |format|
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

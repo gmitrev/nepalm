@@ -1,5 +1,6 @@
 <% content_for :title do %>
-  <%= link_to @project, @project %>
+  <%= render "projects/header_link" %>
+
   <i class='fa fa-angle-right'></i>
   <%= link_to @stack, project_stack_path(@stack.project, @stack) %>
 <% end %>

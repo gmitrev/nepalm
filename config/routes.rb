@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     member do
-      post :archive
+      post :archive, :star
     end
 
     resources :stacks do

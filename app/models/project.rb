@@ -23,6 +23,9 @@ class Project < ActiveRecord::Base
 
   after_create :create_default_stacks, :attach_owner
 
+  scope :starred_by, -> (user) { joins(:project_users).where(project_users: {  user_id: user.id, starred: true }).limit(5) }
+  scope :active, -> { where(archived: false) }
+
   def completed_tasks(user)
     completed = user_stacks(user).flat_map(&:completed_tasks_count).reduce(:+) || 0
     total = user_stacks(user).flat_map(&:total_tasks_count).reduce(:+) || 0
@@ -87,6 +90,20 @@ class Project < ActiveRecord::Base
 
   def add_user(user)
     users << user unless users.include?(user)
+  end
+
+  def relation_with(user)
+    project_users.find_by(user: user)
+  end
+
+  def starred_by?(user)
+    relation_with(user).starred?
+  end
+
+  def star_for!(user)
+    rel = relation_with(user)
+
+    rel.update_column(:starred, !rel.starred?)
   end
 
   private
