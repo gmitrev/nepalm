@@ -1,8 +1,17 @@
-<%= devise_error_messages! %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-login' }) do |f| %>
   <h2 class="form-login-heading">sign in now</h2>
+
+
+    <%- flash.each do |name, msg| -%>
+      <div class="alert alert-danger" role='alert'>
+        <strong>Whoops!</strong>
+        <%= msg %>
+      </div>
+    <%- end -%>
   <div class="login-wrap">
+
+
     <%= f.email_field :email,
       autofocus: true,
       class: 'form-control',

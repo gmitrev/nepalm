@@ -1,7 +1,9 @@
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'form-login', method: :post }) do |f| %>
   <h2 class="form-login-heading">Forgot your password?</h2>
+
+  <%= devise_error_messages! %>
+
   <div class="login-wrap">
-    <%= devise_error_messages! %>
 
     <%= f.email_field :email,
       autofocus: true,
