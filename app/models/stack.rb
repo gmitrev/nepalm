@@ -99,4 +99,15 @@ class Stack < ActiveRecord::Base
     subscribe!(user)
     project.add_user(user)
   end
+
+  class << self
+    def setup(params, project_id, user)
+      stack = new(params.merge(project_id: project_id))
+      stack.users << user
+      stack.memberships.detect { |m| m.user == user }.role = 'admin' # First user should be admin
+      stack
+    end
+
+  end
+
 end
