@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
 
       member do
-        get :members, :new_member
+        get :members, :new_member, :files
         post :add_member, :subscribe, :unsubscribe, :archive
       end
 

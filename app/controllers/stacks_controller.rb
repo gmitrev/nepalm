@@ -103,6 +103,10 @@ class StacksController < ApplicationController
     end
   end
 
+  def files
+
+  end
+
   private
 
   def set_stack

@@ -11,7 +11,11 @@
 <% content_for :submenu do %>
   <ul class="nav nav-pills pull-right">
     <li role="presentation"><a href="#discussion">Discussion</a></li>
-    <li role="presentation"><a href="#notes">Files</a></li>
+    <li role="presentation">
+      <%= link_to files_project_stack_path(@project, @stack) do %>
+        Files
+      <% end %>
+    </li>
     <li role="presentation">
       <%= link_to members_project_stack_path(@stack.project, @stack) do %>
         People
