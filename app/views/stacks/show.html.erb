@@ -5,6 +5,13 @@
   <%= link_to @stack, project_stack_path(@stack.project, @stack) %>
 <% end %>
 
+
+<% if @stack.summary.present? %>
+  <div class='well'>
+    <%= @stack.summary %>
+  </div>
+<% end %>
+
 <% content_for :submenu do %>
   <ul class="nav nav-pills pull-right">
     <li role="presentation"><a href="#discussion">Discussion</a></li>

@@ -24,14 +24,6 @@ class Stack < ActiveRecord::Base
   has_many :subscriptions, class_name: 'CommentSubscription', dependent: :destroy
   has_many :subscribers, through: :subscriptions
 
-  def summary
-    if self[:summary].present?
-      self[:summary]
-    else
-      'No summary available'
-    end
-  end
-
   def completed_tasks_count
     task_list.tasks.select(&:completed?).count
   end
