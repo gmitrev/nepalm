@@ -31,6 +31,7 @@ gem 'rack-google-analytics'
 gem 'skylight'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip', "~> 4.2"
+gem 'chronic_duration'
 
 group :development do
   gem 'sqlite3'

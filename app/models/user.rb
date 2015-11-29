@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
     email
   end
 
+  def all_tasks
+    stacks.flat_map(&:task_lists).flat_map(&:tasks)
+  end
+
   def membership(stack)
     Membership.find_by(user: self, stack: stack)
   end

@@ -20,6 +20,15 @@
       <% end %>
       &nbsp;
 
+      <% if task.work_logs.any? %>
+        <%= ChronicDuration.output(task.total_time_logged) %>
+      <% end %>
+      &nbsp;
+
+      <%= link_to "#!", class: 'btn btn-info btn-xs', title: 'Log work', data: { toggle: 'modal',  target: "#task_#{task.id}_modal"} do %>
+        <i class="fa fa-clock-o"></i>
+      <% end %>
+
       <%= link_to "#!", id: "edit-task-#{task.id}", class: 'edit-task btn btn-primary btn-xs', title: "Edit" do %>
         <i class="fa fa-pencil"></i>
       <% end %>
@@ -33,3 +42,40 @@
   </div>
 
 </li>
+
+<div class="modal fade" id="task_<%= task.id %>_modal" tabindex="-1" role="dialog" aria-labelledby="time_logger" aria-hidden="true">
+  <%= form_for([task, task.work_logs.build], multipart: true, class: 'form-horizontal style-form') do |f| %>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="time_logger">Log work </h4>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="form-group" style='overflow: hidden'>
+            <%= f.label :time_spent, class: 'col-sm-3 control-label' %>
+            <div class='col-sm-9'>
+              <%= f.text_field :time, class: 'form-control' %>
+              <span class='help-block'>E.g. '4 hours', '30 minutes', '90 minutes'</span>
+            </div>
+          </div>
+
+          <div class="form-group" style='overflow: hidden'>
+            <%= f.label :comment, 'What did you do?', class: 'col-sm-3 control-label' %>
+            <div class='col-sm-9'>
+              <%= f.text_area :comment, class: 'form-control' %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Log time", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
