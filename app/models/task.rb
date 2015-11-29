@@ -14,6 +14,8 @@
 class Task < ActiveRecord::Base
   belongs_to :task_list
 
+  has_many :work_logs
+
   def not_completed?
     !completed?
   end
@@ -34,5 +36,9 @@ class Task < ActiveRecord::Base
     else
       update_column(:completed_at, nil)
     end
+  end
+
+  def total_time_logged
+    work_logs.map { |log| log.time.to_i }.sum
   end
 end

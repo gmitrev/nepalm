@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     member do
       put :toggle
     end
+    resources :work_logs
   end
 
   get :profile, to: 'users#show'
