@@ -84,11 +84,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'nepalm.com'  }
 
   config.action_mailer.smtp_settings = {
-    address: 'smtp.mailgun.org',
+    address: 'smtp.sendgrid.net',
     port: 587,
-    user_name: ENV['MAILGUN_USERNAME'],
-    password: ENV['MAILGUN_PASSWORD'],
-    domain: ENV['MAILGUN_DOMAIN']
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    domain: 'nepalm.com'
   }
 
   config.action_mailer.delivery_method = :smtp
